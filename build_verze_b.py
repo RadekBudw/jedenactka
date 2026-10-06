@@ -1479,7 +1479,17 @@ def generate_index_b():
       {{ src: "zonerama_5.jpg", tag: "Expedice na vodě", title: "Příroda a putování po jihočeských řekách" }},
       {{ src: "zonerama_valcha.jpg", tag: "Život na Valše", title: "Týmové hry v klubovně a celoroční program schůzek" }},
       {{ src: "zonerama_camp.jpg", tag: "Tábor Labská Stráň 2026", title: "Lezení ve skalách a táborové výzvy v přírodě" }},
-      {{ src: "zonerama_6.jpg", tag: "Kajaky v peřejích", title: "Slalomový trénink mezi brankami na divoké vodě" }}
+      {{ src: "zonerama_6.jpg", tag: "Kajaky v peřejích", title: "Slalomový trénink mezi brankami na divoké vodě" }},
+      {{ src: "zonerama_hero_1.jpg", tag: "Vánoce na Švýcaráku", title: "Tradiční vánoční setkání oddílu na srubové základně Švýcarák" }},
+      {{ src: "zonerama_hero_2.jpg", tag: "Vánoce na Švýcaráku", title: "Kouzlo Vánoc, oddílové zvyky a dárky v zasněžených lesích" }},
+      {{ src: "zonerama_hero_3.jpg", tag: "Výprava všech lidí", title: "Společné dobrodružství a setkání generací vodních skautů" }},
+      {{ src: "zonerama_hero_4.jpg", tag: "Výprava všech lidí", title: "Špekáčky, kytary a přátelství v údolí řeky Vltavy" }},
+      {{ src: "zonerama_hero_5.jpg", tag: "Brigáda na Švýcaráku", title: "Příprava palivového dříví na zimu a údržba oddílového srubu" }},
+      {{ src: "zonerama_hero_6.jpg", tag: "3 Jezy Praha 2025", title: "Reprezentace 11. oddílu na legendárním závodě Napříč Prahou" }},
+      {{ src: "zonerama_hero_7.jpg", tag: "3 Jezy Praha 2025", title: "Průjezd vorovou propustí v peřejích historického centra Prahy" }},
+      {{ src: "zonerama_hero_8.jpg", tag: "Slalomový kanál 2026", title: "Trénink pádlování a stability posádek mezi brankami" }},
+      {{ src: "zonerama_hero_9.jpg", tag: "Společná voda 2026", title: "Putování na kanoích po jihočeských řekách a vodácká kamarádství" }},
+      {{ src: "zonerama_hero_10.jpg", tag: "Tábor Labská Stráň 2026", title: "Skalní lezení, lanové techniky a odvaha v Labském kaňonu" }}
     ];
 
     let currentHeroIdxB = Math.floor(Math.random() * heroPhotosB.length);
