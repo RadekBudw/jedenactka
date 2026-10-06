@@ -1594,7 +1594,7 @@ def generate_index_a():
       <p class="text-slate-500 text-center sm:text-right flex flex-col sm:flex-row items-center justify-end gap-1.5 sm:gap-2">
         <span class="text-slate-400">Verze: {APP_VERSION} ({get_git_commit()})</span>
         <span class="hidden sm:inline text-slate-700">•</span>
-        <span class="text-slate-400">Publikováno: {BUILD_TIMESTAMP}</span>
+        <span class="text-slate-400">Aktualizováno: {BUILD_TIMESTAMP}</span>
         <span class="hidden sm:inline text-slate-700">•</span>
         <span>Registrováno u Junák – český skaut, 4. středisko VAVÉHA České Budějovice.</span>
       </p>
@@ -2258,7 +2258,7 @@ def generate_vedeni_a():
       <p class="text-slate-500 text-center sm:text-right flex flex-col sm:flex-row items-center justify-end gap-1.5 sm:gap-2">
         <span class="text-slate-400">Verze: {APP_VERSION} ({get_git_commit()})</span>
         <span class="hidden sm:inline text-slate-700">•</span>
-        <span class="text-slate-400">Publikováno: {BUILD_TIMESTAMP}</span>
+        <span class="text-slate-400">Aktualizováno: {BUILD_TIMESTAMP}</span>
         <span class="hidden sm:inline text-slate-700">•</span>
         <span>Registrováno u Junák – český skaut, 4. středisko VAVÉHA České Budějovice.</span>
       </p>
