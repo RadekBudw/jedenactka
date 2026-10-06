@@ -6,11 +6,11 @@
   <title>11. oddíl vodních skautů České Budějovice | Moderní flotila</title>
   <meta name="description" content="Oficiální moderní prezentace 11. chlapeckého oddílu vodních skautů v Českých Budějovicích. Skauting, pramice, kanoe, dobrodružství pro kluky od 6 let.">
   <!-- NEVIDITELNÉ METADATA VERZOVÁNÍ -->
-  <meta name="app-version" content="1.2.9">
-  <meta name="build-timestamp" content="2026-10-06 17:20:25">
-  <meta name="git-commit" content="914a1ce">
+  <meta name="app-version" content="1.2.10">
+  <meta name="build-timestamp" content="2026-10-06 17:42:38">
+  <meta name="git-commit" content="cff8270">
   <meta name="generator" content="Antigravity / 11. oddíl vodních skautů ČB">
-  <!-- JEDENACTKA_VERSION: ver=1.2.9 git=914a1ce time=2026-10-06 17:20:25 -->
+  <!-- JEDENACTKA_VERSION: ver=1.2.10 git=cff8270 time=2026-10-06 17:42:38 -->
   
   <script>
     if (localStorage.theme === 'dark') {
@@ -388,8 +388,13 @@
           <a href="#kontakty" class="px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand-blue hover:bg-slate-100 transition-all">Kontakty</a>
         </nav>
 
-        <!-- CTA & THEME TOGGLE -->
-        <div class="hidden sm:flex items-center gap-2.5">
+        <!-- CTA, THEME TOGGLE & SEARCH -->
+        <div class="hidden sm:flex items-center gap-2">
+          <button onclick="openSearchModal()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 transition-all shadow-xs cursor-pointer flex items-center justify-center gap-2 text-xs font-semibold" title="Vyhledávat na webu (Ctrl+K)" aria-label="Hledat na webu">
+            <i class="fa-solid fa-magnifying-glass text-sm text-slate-500 dark:text-slate-400"></i>
+            <span class="hidden xl:inline text-slate-500">Hledat...</span>
+            <kbd class="hidden xl:inline-block px-1.5 py-0.5 text-[10px] bg-slate-100 dark:bg-slate-700 text-slate-400 rounded border border-slate-200 dark:border-slate-600 font-mono">Ctrl+K</kbd>
+          </button>
           <button onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-yellow-400 dark:hover:bg-slate-700 transition-all shadow-xs cursor-pointer flex items-center justify-center" title="Přepnout tmavý / světlý režim" aria-label="Přepnout režim">
             <i class="fa-solid fa-moon text-base text-slate-800 theme-toggle-icon"></i>
           </button>
@@ -399,8 +404,11 @@
           </a>
         </div>
 
-        <!-- MOBILE HAMBURGER & THEME TOGGLE -->
-        <div class="flex items-center gap-2 lg:hidden">
+        <!-- MOBILE HAMBURGER, SEARCH & THEME TOGGLE -->
+        <div class="flex items-center gap-1.5 lg:hidden">
+          <button onclick="openSearchModal()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 cursor-pointer" title="Hledat" aria-label="Hledat">
+            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+          </button>
           <button onclick="toggleTheme()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-yellow-400 dark:hover:bg-slate-700 cursor-pointer" title="Přepnout režim" aria-label="Přepnout režim">
             <i class="fa-solid fa-moon text-sm text-slate-800 theme-toggle-icon"></i>
           </button>
@@ -413,6 +421,12 @@
 
     <!-- MOBILE NAVIGATION DRAWER -->
     <div id="mobileMenu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-3 pb-6 shadow-xl transition-all">
+      <div class="mb-3">
+        <button onclick="openSearchModal(); document.getElementById('mobileMenu').classList.add('hidden');" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 text-left cursor-pointer">
+          <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm"></i>
+          <span>Hledat na webu Jedenáctky...</span>
+        </button>
+      </div>
       <div class="flex flex-col gap-1 text-base font-semibold">
         <a href="#pro-rodice" class="px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 flex items-center gap-3 font-bold text-amber-700 dark:text-amber-400 bg-amber-50/50 dark:bg-amber-950/30">
           <i class="fa-solid fa-heart-pulse w-5 text-amber-500"></i> Pro rodiče (Rozpis schůzek & fotky)
@@ -2009,9 +2023,9 @@
         <span class="text-slate-300 font-bold">11. oddíl vodních skautů České Budějovice</span>
       </div>
       <p class="text-slate-500 text-center sm:text-right flex flex-col sm:flex-row items-center justify-end gap-1.5 sm:gap-2">
-        <span class="text-slate-400">Verze: 1.2.9 (914a1ce)</span>
+        <span class="text-slate-400">Verze: 1.2.10 (cff8270)</span>
         <span class="hidden sm:inline text-slate-700">•</span>
-        <span class="text-slate-400">Aktualizováno: 06.10.2026 17:20</span>
+        <span class="text-slate-400">Aktualizováno: 06.10.2026 17:42</span>
         <span class="hidden sm:inline text-slate-700">•</span>
         <span>Registrováno u Junák – český skaut, 4. středisko VAVÉHA České Budějovice.</span>
       </p>
@@ -2277,6 +2291,209 @@
       });
     }
     updateThemeIcons();
+  </script>
+
+  <!-- MODAL VYHLEDÁVÁNÍ -->
+  <div id="searchModal" class="fixed inset-0 z-[100] hidden bg-slate-950/75 backdrop-blur-sm flex items-start justify-center p-3 sm:p-6 md:pt-16 overflow-y-auto" onclick="if(event.target===this) closeSearchModal();">
+    <div class="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transform transition-all">
+      
+      <!-- HLAVIČKA FORMULÁŘE -->
+      <form id="siteSearchForm" action="index.html" method="get" class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/60" onsubmit="handleSearchSubmit(event)">
+        <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg"></i>
+        <input id="siteSearchInput" type="search" name="s" placeholder="Hledat schůzky, Valchu, termíny, rádce, kontakty..." class="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 text-base sm:text-lg focus:outline-none" autocomplete="off" oninput="onSearchInput(this.value)">
+        <button type="button" onclick="closeSearchModal()" class="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs transition-colors cursor-pointer" title="Zavřít (Esc)">
+          <kbd class="px-2 py-1 bg-white dark:bg-slate-800 rounded text-[11px] border border-slate-200 dark:border-slate-700 font-mono shadow-2xs">ESC</kbd>
+        </button>
+      </form>
+
+      <!-- VÝSLEDKY & DOPORUČENÉ KATEGORIE -->
+      <div id="searchResultsContainer" class="max-h-[60vh] overflow-y-auto p-4 sm:p-5 space-y-4">
+        <!-- Vykresluje se dynamicky přes JS -->
+      </div>
+
+      <!-- ZÁPATÍ MODALU -->
+      <div class="px-5 py-3.5 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-400">
+        <div class="flex items-center gap-2">
+          <span>Stiskem <kbd class="px-1.5 py-0.5 bg-white dark:bg-slate-800 border rounded font-mono text-[10px]">Enter</kbd> prohledáte celý archiv</span>
+        </div>
+        <button type="submit" form="siteSearchForm" class="text-brand-sky hover:underline font-bold inline-flex items-center gap-1 cursor-pointer">
+          <span>Vyhledat</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <script>
+    // Search data index
+    const SEARCH_INDEX = [{"title": "Schůzky oddílu (Rozpis 2026/2027)", "desc": "Toulavá smečka (vlčata): Středa 16:00–18:00 • Bárka (vodní skauti): Čtvrtek 16:00–18:00 na loděnici Valcha.", "category": "Schůzky & Program", "url": "#pro-rodice", "icon": "fa-clock", "keywords": "schůzky středa čtvrtek kdy toulavá smečka bárka program časy"}, {"title": "Loděnice a klubovna Valcha", "desc": "Stromovka 3, České Budějovice • GPS: 48.9720617N, 14.4690989E • Jak se k nám dostat na kole, pěšky i MHD.", "category": "Klubovna & Mapa", "url": "#klubovna", "icon": "fa-map-location-dot", "keywords": "valcha valši loděnice klubovna adresa kde mapa poloha stromovka gps doprava"}, {"title": "Pro rodiče: Informace pro nováčky & fotogalerie", "desc": "Co s sebou na schůzky, oddílový kroj, platby, přihlášky a odkaz na kompletní fotogalerii na Zonerama.", "category": "Pro rodiče", "url": "#pro-rodice", "icon": "fa-heart-pulse", "keywords": "rodiče nováčci přihláška kroj poplatky vybavení co s sebou fotky zonerama galerie"}, {"title": "Nábor nových členů do oddílu", "desc": "Přijímáme kluky i holky do vlčat (6–10 let) a skautů (11–15 let). Přijďte se podívat na nezávaznou zkušební schůzku!", "category": "Nábor", "url": "#nabor", "icon": "fa-user-plus", "keywords": "nábor přihláška noví členové chci se přidat zkušební schůzka jak se stát skautem"}, {"title": "O 11. oddílu vodních skautů České Budějovice", "desc": "Historie oddílu od roku 1990, tradice černo-žluté vlajky, vodácká výchova a středisko VAVÉHA.", "category": "O oddílu", "url": "#oddil", "icon": "fa-anchor", "keywords": "o oddílu historie tradice vlajka černo žlutá vaveha středisko vodní skauting"}, {"title": "Naše paluby (Vlčata, Skauti, Roveři, Klub)", "desc": "Toulavá smečka (6–10 let), Bárka (11–15 let), Roverská VěTeV (15+ let) a Klub 11. oddílu (dospělí a přátelé oddílu).", "category": "Paluby oddílu", "url": "#paluby", "icon": "fa-ship", "keywords": "paluby toulavá smečka vlčata bárka skauti větev roveři klub oddílu věkové kategorie družiny"}, {"title": "Kontakty a vedení oddílu", "desc": "Kontaktní e-maily, telefonní čísla na kapitány a vedení jednotlivých palub, bankovní účet a IČO.", "category": "Kontakty", "url": "#kontakty", "icon": "fa-address-book", "keywords": "kontakty telefon email kapitán spojení kde nás najdete bankovní spojení transparentní účet"}, {"title": "Kompletní tým vedení (34 vedoucích a rádců)", "desc": "Přehled všech 34 činovníků, rádců posádek, instruktorů a garantů se specializacemi a přezdívkami.", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-users", "keywords": "vedení vedoucí rádci činovníci rádce instruktor kapitán tým 34 vedoucích"}, {"title": "Brigáda na Švýcaráku (19.–20. 9.)", "desc": "Bárka (vodní skauti) • Pomoc správcům základny a příprava lodního materiálu na novou sezónu.", "category": "Termínovník: Bárka", "url": "#terminovnik", "icon": "fa-hammer", "keywords": "Brigáda na Švýcaráku 19.–20. 9. Pomoc správcům základny a příprava lodního materiálu na novou sezónu. bárka akce výprava termínovník"}, {"title": "Závod přes tři jezy (Praha) (28. 9.)", "desc": "Bárka (vodní skauti) • Celostátní vodácký závod historickým centrem Prahy. Naše posádky na startu!", "category": "Termínovník: Bárka", "url": "#terminovnik", "icon": "fa-trophy", "keywords": "Závod přes tři jezy (Praha) 28. 9. Celostátní vodácký závod historickým centrem Prahy. Naše posádky na startu! bárka akce výprava termínovník"}, {"title": "Přespání na Valše (10.–11. 10.)", "desc": "Bárka (vodní skauti) • Noční loděnice, táborák, oddílová rada a první společné zážitky v loděnici.", "category": "Termínovník: Bárka", "url": "#terminovnik", "icon": "fa-campground", "keywords": "Přespání na Valše 10.–11. 10. Noční loděnice, táborák, oddílová rada a první společné zážitky v loděnici. bárka akce výprava termínovník"}, {"title": "Jednodenní podzimní výprava (24. 10.)", "desc": "Bárka (vodní skauti) • Pěší terénní výprava do jihočeské přírody spojená s hrou a orientací.", "category": "Termínovník: Bárka", "url": "#terminovnik", "icon": "fa-compass", "keywords": "Jednodenní podzimní výprava 24. 10. Pěší terénní výprava do jihočeské přírody spojená s hrou a orientací. bárka akce výprava termínovník"}, {"title": "Benediktýnka (13.–14. 11.)", "desc": "Bárka (vodní skauti) • Tradiční vícedenní výprava s přespáním na chatě v lesích a noční etapovou hrou.", "category": "Termínovník: Bárka", "url": "#terminovnik", "icon": "fa-fire", "keywords": "Benediktýnka 13.–14. 11. Tradiční vícedenní výprava s přespáním na chatě v lesích a noční etapovou hrou. bárka akce výprava termínovník"}, {"title": "Podzimní výprava (27.–28. 11.)", "desc": "Bárka (vodní skauti) • Vícedenní putování posádek Bárky za každého počasí.", "category": "Termínovník: Bárka", "url": "#terminovnik", "icon": "fa-person-hiking", "keywords": "Podzimní výprava 27.–28. 11. Vícedenní putování posádek Bárky za každého počasí. bárka akce výprava termínovník"}, {"title": "Oddílová Vánočka (27.–29. 12.)", "desc": "Bárka (vodní skauti) • Vánoční zvyky, cukroví, dárky a bilancování uplynulého roku v teple klubovny.", "category": "Termínovník: Bárka", "url": "#terminovnik", "icon": "fa-tree", "keywords": "Oddílová Vánočka 27.–29. 12. Vánoční zvyky, cukroví, dárky a bilancování uplynulého roku v teple klubovny. bárka akce výprava termínovník"}, {"title": "Lezecká stěna Lanovka (16. 1.)", "desc": "Bárka (vodní skauti) • Zimní tělocvik na umělé lezecké stěně v Českých Budějovicích s lany a úvazky.", "category": "Termínovník: Bárka", "url": "#terminovnik", "icon": "fa-mountain", "keywords": "Lezecká stěna Lanovka 16. 1. Zimní tělocvik na umělé lezecké stěně v Českých Budějovicích s lany a úvazky. bárka akce výprava termínovník"}, {"title": "Jarky (Jarní prázdniny) (18.–21. 2.)", "desc": "Bárka (vodní skauti) • Čtyřdenní zimní expedice na sněhu s běžkami a zimními hrami.", "category": "Termínovník: Bárka", "url": "#terminovnik", "icon": "fa-snowflake", "keywords": "Jarky (Jarní prázdniny) 18.–21. 2. Čtyřdenní zimní expedice na sněhu s běžkami a zimními hrami. bárka akce výprava termínovník"}, {"title": "Zahajovací výprava (Terčino údolí) (11.–13. 9.)", "desc": "Toulavá smečka (vlčata) • Švýcarská chata, rozloučení se staršími vlčáky a jejich přechod do Bárky.", "category": "Termínovník: Vlčata", "url": "#terminovnik", "icon": "fa-compass", "keywords": "Zahajovací výprava (Terčino údolí) 11.–13. 9. Švýcarská chata, rozloučení se staršími vlčáky a jejich přechod do Bárky. vlčata akce výprava termínovník"}, {"title": "Podzimní jednodenka (10. 10.)", "desc": "Toulavá smečka (vlčata) • Sobotní dobrodružství v okolí Budějovic, hry a luštění šifer v lese.", "category": "Termínovník: Vlčata", "url": "#terminovnik", "icon": "fa-map", "keywords": "Podzimní jednodenka 10. 10. Sobotní dobrodružství v okolí Budějovic, hry a luštění šifer v lese. vlčata akce výprava termínovník"}, {"title": "Vlčácká přespávačka (6.–7. 11.)", "desc": "Toulavá smečka (vlčata) • Noc v klubovně na Valše plná her, promítání a společného vaření.", "category": "Termínovník: Vlčata", "url": "#terminovnik", "icon": "fa-bed", "keywords": "Vlčácká přespávačka 6.–7. 11. Noc v klubovně na Valše plná her, promítání a společného vaření. vlčata akce výprava termínovník"}, {"title": "Mikulášská jednodenka (5. 12.)", "desc": "Toulavá smečka (vlčata) • Pátrání po stopách Mikuláše, čertovské stezky a nadílka pro šikovná vlčata.", "category": "Termínovník: Vlčata", "url": "#terminovnik", "icon": "fa-cookie-bite", "keywords": "Mikulášská jednodenka 5. 12. Pátrání po stopách Mikuláše, čertovské stezky a nadílka pro šikovná vlčata. vlčata akce výprava termínovník"}, {"title": "Vlčácká Vánočka (27.–29. 12.)", "desc": "Toulavá smečka (vlčata) • Kouzlo Vánoc se smečkou, oddílové zvyky a vyhlášení nejlepších vlčat roku.", "category": "Termínovník: Vlčata", "url": "#terminovnik", "icon": "fa-tree", "keywords": "Vlčácká Vánočka 27.–29. 12. Kouzlo Vánoc se smečkou, oddílové zvyky a vyhlášení nejlepších vlčat roku. vlčata akce výprava termínovník"}, {"title": "Zimní jednodenka (23. 1.)", "desc": "Toulavá smečka (vlčata) • Hry na sněhu, bobování a stopování zvěře v zimní krajině.", "category": "Termínovník: Vlčata", "url": "#terminovnik", "icon": "fa-snowflake", "keywords": "Zimní jednodenka 23. 1. Hry na sněhu, bobování a stopování zvěře v zimní krajině. vlčata akce výprava termínovník"}, {"title": "Martin Hájek", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Martin Hájek     vedoucí rádce kontakt"}, {"title": "David Hacker", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " David Hacker     vedoucí rádce kontakt"}, {"title": "Jáchym Řehounek", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Jáchym Řehounek     vedoucí rádce kontakt"}, {"title": "Matěj Bajgar", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Matěj Bajgar     vedoucí rádce kontakt"}, {"title": "Jan Bartík", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Jan Bartík     vedoucí rádce kontakt"}, {"title": "Vít Sattran", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Vít Sattran     vedoucí rádce kontakt"}, {"title": "Leontýna Maurerová", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Leontýna Maurerová     vedoucí rádce kontakt"}, {"title": "Hugo Bajgar", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Hugo Bajgar     vedoucí rádce kontakt"}, {"title": "Christián Maurer", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Christián Maurer     vedoucí rádce kontakt"}, {"title": "Šimon Rucki", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Šimon Rucki     vedoucí rádce kontakt"}, {"title": "Filip Vácha", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Filip Vácha     vedoucí rádce kontakt"}, {"title": "Ondřej Čapek", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Ondřej Čapek     vedoucí rádce kontakt"}, {"title": "Richard Kašpar", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Richard Kašpar     vedoucí rádce kontakt"}, {"title": "Adam Klabouch", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Adam Klabouch     vedoucí rádce kontakt"}, {"title": "Matěj Jerhot", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Matěj Jerhot     vedoucí rádce kontakt"}, {"title": "Václav Ludvík", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Václav Ludvík     vedoucí rádce kontakt"}, {"title": "Vít Veltrubský", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Vít Veltrubský     vedoucí rádce kontakt"}, {"title": "František Bajgar", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " František Bajgar     vedoucí rádce kontakt"}, {"title": "Max Rosenthaler", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Max Rosenthaler     vedoucí rádce kontakt"}, {"title": "František Kratochvíl", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " František Kratochvíl     vedoucí rádce kontakt"}, {"title": "Ondřej Ošmera", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Ondřej Ošmera     vedoucí rádce kontakt"}, {"title": "Jakub Nejedlý", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Jakub Nejedlý     vedoucí rádce kontakt"}, {"title": "David Ujčík", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " David Ujčík     vedoucí rádce kontakt"}, {"title": "Valdemar Vokálek", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Valdemar Vokálek     vedoucí rádce kontakt"}, {"title": "Antonín Malec", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Antonín Malec     vedoucí rádce kontakt"}, {"title": "Ondřej Polák", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Ondřej Polák     vedoucí rádce kontakt"}, {"title": "Vítězslav Černý", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Vítězslav Černý     vedoucí rádce kontakt"}, {"title": "Jaroslav Jílek", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Jaroslav Jílek     vedoucí rádce kontakt"}, {"title": "Kryštof Klabouch", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Kryštof Klabouch     vedoucí rádce kontakt"}, {"title": "Mag. iur.", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Mag. iur.     vedoucí rádce kontakt"}, {"title": "Michal Čutka", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Michal Čutka     vedoucí rádce kontakt"}, {"title": "Ondřej Šustr", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Ondřej Šustr     vedoucí rádce kontakt"}, {"title": "Tomáš Tříska", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " Tomáš Tříska     vedoucí rádce kontakt"}, {"title": "MUDr. Jaromír Pokorný", "desc": " • Paluba: ", "category": "Vedení oddílu", "url": "vedeni.html", "icon": "fa-user-tag", "keywords": " MUDr. Jaromír Pokorný     vedoucí rádce kontakt"}];
+
+    function removeAccents(str) {
+      return (str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function openSearchModal(initialQuery = '') {
+      const modal = document.getElementById('searchModal');
+      const input = document.getElementById('siteSearchInput');
+      if (!modal || !input) return;
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      if (initialQuery) {
+        input.value = initialQuery;
+      }
+      input.focus();
+      onSearchInput(input.value);
+    }
+
+    function closeSearchModal() {
+      const modal = document.getElementById('searchModal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSearchModal();
+      }
+      // Ctrl+K nebo Cmd+K nebo klávesa /
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openSearchModal();
+      }
+      if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        openSearchModal();
+      }
+    });
+
+    function onSearchInput(query) {
+      const container = document.getElementById('searchResultsContainer');
+      if (!container) return;
+
+      const q = removeAccents(query.trim());
+
+      if (!q) {
+        // Výchozí stav – doporučené rychlé odkazy a kategorie
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-400">Rychlé volby & doporučené sekce</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" onclick="quickFillSearch('schůzky')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">🕒 Schůzky 2026/27</button>
+              <button type="button" onclick="quickFillSearch('Valcha')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">⚓ Loděnice Valcha</button>
+              <button type="button" onclick="quickFillSearch('termínovník')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">📅 Termínovník výprav</button>
+              <button type="button" onclick="quickFillSearch('Hopík')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">👤 Hopík (kapitán)</button>
+              <button type="button" onclick="quickFillSearch('Toulavá smečka')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">🐺 Vlčata</button>
+              <button type="button" onclick="quickFillSearch('Bárka')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">⛵ Skauti (Bárka)</button>
+            </div>
+            
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Časté dotazy</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                <a href="#pro-rodice" onclick="closeSearchModal()" class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-sky-50 dark:hover:bg-slate-800 transition-all flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-heart-pulse text-xs"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-800 dark:text-slate-200 text-xs">Informace pro rodiče</div>
+                    <div class="text-[11px] text-slate-400">Rozpis, vybavení, fotky</div>
+                  </div>
+                </a>
+                <a href="#klubovna" onclick="closeSearchModal()" class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-sky-50 dark:hover:bg-slate-800 transition-all flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-xl bg-sky-100 dark:bg-sky-950/60 text-brand-sky flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-map-location-dot text-xs"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-800 dark:text-slate-200 text-xs">Kde je loděnice Valcha?</div>
+                    <div class="text-[11px] text-slate-400">Stromovka 3, mapa & GPS</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // Filtrace indexu
+      const matches = SEARCH_INDEX.filter(item => {
+        const fullText = removeAccents(`${item.title} ${item.desc} ${item.category} ${item.keywords || ''}`);
+        return fullText.includes(q);
+      });
+
+      if (matches.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 px-4">
+            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+              <i class="fa-solid fa-magnifying-glass text-base"></i>
+            </div>
+            <div class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-1">Žádné okamžité výsledky pro „${query}“</div>
+            <div class="text-xs text-slate-400 max-w-sm mx-auto mb-4">Zkuste zkontrolovat překlep, použít obecnější slovo nebo stisknout Enter pro prohledání celého archivu článků.</div>
+            <button type="submit" form="siteSearchForm" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-brand-sky text-white hover:bg-sky-500 transition-colors">
+              <span>Hledat v celém archivu</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      // Vykreslení výsledků
+      let html = `<div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nalezeno ${matches.length} výsledků pro „${query}“:</div>`;
+      html += `<div class="space-y-2">`;
+      matches.slice(0, 10).forEach(m => {
+        html += `
+          <a href="${m.url}" onclick="closeSearchModal()" class="block p-3 sm:p-3.5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/60 hover:bg-sky-50/80 dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-800 hover:border-sky-200 dark:hover:border-slate-700 transition-all group">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-white dark:bg-slate-700 border border-slate-200/60 dark:border-slate-600 flex items-center justify-center text-brand-sky shrink-0 group-hover:scale-105 transition-transform">
+                <i class="fa-solid ${m.icon || 'fa-arrow-right'} text-xs"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="px-2 py-0.5 rounded-md bg-white dark:bg-slate-700 text-[10px] font-bold text-slate-500 dark:text-slate-300 border border-slate-200/60 dark:border-slate-600">${m.category}</span>
+                </div>
+                <div class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-brand-sky transition-colors truncate">${m.title}</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-0.5">${m.desc}</div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-slate-300 dark:text-slate-600 group-hover:text-brand-sky text-xs self-center"></i>
+            </div>
+          </a>
+        `;
+      });
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    function quickFillSearch(term) {
+      const input = document.getElementById('siteSearchInput');
+      if (input) {
+        input.value = term;
+        input.focus();
+        onSearchInput(term);
+      }
+    }
+
+    function handleSearchSubmit(e) {
+      const query = document.getElementById('siteSearchInput')?.value.trim();
+      // Pokud máme WordPress prostředí, nebráníme odeslání formuláře (?s=query)
+      if (window.location.search || window.location.pathname.includes('/wordpress') || document.querySelector('meta[name="generator"][content*="WordPress"]')) {
+        return true;
+      }
+      // Statické demo na GitHub Pages: pokud byl nalezen výsledek, přesměrujeme na první shodu
+      const q = removeAccents(query);
+      if (q) {
+        const matches = SEARCH_INDEX.filter(item => removeAccents(`${item.title} ${item.desc} ${item.keywords || ''}`).includes(q));
+        if (matches.length > 0) {
+          e.preventDefault();
+          closeSearchModal();
+          window.location.href = matches[0].url;
+          return false;
+        }
+      }
+      return true;
+    }
   </script>
 </body>
 </html>

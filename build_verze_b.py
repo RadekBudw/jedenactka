@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json, re, datetime
-from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html, get_app_version, get_git_commit, save_version_json, update_index_html_version
+from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html, get_app_version, get_git_commit, save_version_json, update_index_html_version, get_search_modal_html, get_search_script_js
 
 BUILD_TIMESTAMP = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
@@ -61,8 +61,13 @@ def get_navbar_b(is_subpage=False):
           <a href="{prefix}#kontakty" class="hover:text-scout-blue transition-colors">Kontakty</a>
         </nav>
 
-        <!-- CTA BUTTON & THEME TOGGLE -->
-        <div class="hidden sm:flex items-center gap-2.5">
+        <!-- CTA BUTTON, SEARCH & THEME TOGGLE -->
+        <div class="hidden sm:flex items-center gap-2">
+          <button onclick="openSearchModal()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 transition-colors cursor-pointer flex items-center justify-center gap-2 text-xs font-semibold" title="Vyhledávat na webu (Ctrl+K)" aria-label="Hledat na webu">
+            <i class="fa-solid fa-magnifying-glass text-sm text-slate-500 dark:text-slate-400"></i>
+            <span class="hidden xl:inline text-slate-500">Hledat...</span>
+            <kbd class="hidden xl:inline-block px-1.5 py-0.5 text-[10px] bg-slate-100 dark:bg-slate-700 text-slate-400 rounded border border-slate-200 dark:border-slate-600 font-mono">Ctrl+K</kbd>
+          </button>
           <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-yellow-400 dark:hover:bg-slate-700 transition-colors cursor-pointer flex items-center justify-center" title="Přepnout tmavý / světlý režim" aria-label="Přepnout režim">
             <i class="fa-solid fa-moon text-sm text-slate-800 theme-toggle-icon"></i>
           </button>
@@ -72,8 +77,11 @@ def get_navbar_b(is_subpage=False):
           </a>
         </div>
 
-        <!-- HAMBURGER & THEME BUTTON -->
-        <div class="flex items-center gap-2 lg:hidden">
+        <!-- HAMBURGER, SEARCH & THEME BUTTON -->
+        <div class="flex items-center gap-1.5 lg:hidden">
+          <button onclick="openSearchModal()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 cursor-pointer" title="Hledat" aria-label="Hledat">
+            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+          </button>
           <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-yellow-400 dark:hover:bg-slate-700 cursor-pointer" title="Přepnout režim" aria-label="Přepnout režim">
             <i class="fa-solid fa-moon text-xs text-slate-800 theme-toggle-icon"></i>
           </button>
@@ -86,6 +94,12 @@ def get_navbar_b(is_subpage=False):
 
     <!-- MOBILE MENU DRAWER -->
     <div id="mobileMenuB" class="hidden lg:hidden bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-4 space-y-2">
+      <div class="mb-2">
+        <button onclick="openSearchModal(); document.getElementById('mobileMenuB').classList.add('hidden');" class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700 text-left cursor-pointer">
+          <i class="fa-solid fa-magnifying-glass text-slate-400 text-xs"></i>
+          <span>Hledat na webu Jedenáctky...</span>
+        </button>
+      </div>
       <a href="{prefix}#pro-rodice" class="block px-3 py-2 rounded-lg font-bold text-amber-800 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 flex items-center gap-2">
         <i class="fa-solid fa-heart-pulse text-amber-600"></i> Pro rodiče (Rozpis schůzek & fotky)
       </a>
@@ -1547,6 +1561,9 @@ def generate_index_b():
     }}
     updateThemeIcons();
   </script>
+
+{get_search_modal_html()}
+{get_search_script_js()}
 </body>
 </html>
 """
@@ -2010,6 +2027,9 @@ def generate_vedeni_b():
     }}
     updateThemeIcons();
   </script>
+
+{get_search_modal_html(prefix="")}
+{get_search_script_js(prefix="", is_subpage=True)}
 </body>
 </html>
 """

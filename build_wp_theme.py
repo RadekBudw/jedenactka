@@ -245,6 +245,11 @@ add_filter('template_include', function($template) {
     with open(os.path.join(THEME_DIR, "page.php"), "w", encoding="utf-8") as f:
         f.write(wp_page)
 
+    # 7b. Vytvoření šablony výsledků vyhledávání search.php
+    wp_search = generate_wp_search_template(vedeni_html)
+    with open(os.path.join(THEME_DIR, "search.php"), "w", encoding="utf-8") as f:
+        f.write(wp_search)
+
     # 8. Vytvoření šablony single.php (pro jednotlivé články/aktuality)
     with open(os.path.join(THEME_DIR, "single.php"), "w", encoding="utf-8") as f:
         f.write(wp_page)
@@ -315,6 +320,9 @@ def adapt_html_to_wp(html_content, is_subpage=False):
 
     html_content = re.sub(r'(src)=["\']([^"\']+)["\']', replace_src, html_content)
 
+    # Nahrazení akce vyhledávacího formuláře na dynamickou home_url('/')
+    html_content = re.sub(r'action=["\'][^"\']*index\.html["\']', 'action="<?php echo esc_url( home_url( \'/\' ) ); ?>"', html_content)
+
     return html_content
 
 def generate_wp_page_template(vedeni_html):
@@ -366,6 +374,122 @@ def generate_wp_page_template(vedeni_html):
         ?>
       </div>
     </article>
+  </main>
+"""
+
+    full_page = header_raw + "\n" + body_content + "\n" + footer_raw
+    return adapt_html_to_wp(full_page, is_subpage=True)
+
+def generate_wp_search_template(vedeni_html):
+    """
+    Vygeneruje WordPress search.php šablonu pro výsledky vyhledávání.
+    """
+    h_end = vedeni_html.find('</header>') + len('</header>')
+    f_start = vedeni_html.find('<!-- FOOTER -->')
+    if f_start == -1:
+        f_start = vedeni_html.find('<footer')
+
+    header_raw = vedeni_html[:h_end]
+    footer_raw = vedeni_html[f_start:]
+
+    if '</style>' in header_raw:
+        header_raw = header_raw.replace('</style>', WP_CONTENT_STYLES + '\n  </style>')
+
+    body_content = """
+  <!-- HLAVNÍ OBSAH VÝSLEDKŮ VYHLEDÁVÁNÍ -->
+  <main class="min-h-screen py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <!-- NÁVRAT NA ÚVOD -->
+    <div class="mb-6 flex items-center justify-between gap-4">
+      <a href="<?php echo home_url('/'); ?>" class="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-brand-sky dark:text-slate-400 dark:hover:text-amber-400 transition-colors">
+        <i class="fa-solid fa-arrow-left text-xs"></i>
+        <span>Zpět na hlavní stránku oddílu</span>
+      </a>
+      <span class="text-xs text-slate-400 font-semibold hidden sm:inline">11. oddíl vodních skautů České Budějovice</span>
+    </div>
+
+    <!-- KARTA S VÝSLEDKY -->
+    <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200/80 dark:border-slate-800">
+      <header class="mb-8 border-b border-slate-100 dark:border-slate-800 pb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950/40 text-brand-sky text-xs font-bold mb-3 border border-sky-100 dark:border-sky-900/40">
+          <i class="fa-solid fa-magnifying-glass text-xs"></i>
+          <span>Vyhledávání v archivu webu</span>
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white font-heading tracking-tight">
+          Výsledky pro: <span class="text-brand-sky">„<?php echo esc_html( get_search_query() ); ?>“</span>
+        </h1>
+      </header>
+
+      <!-- VYHLEDÁVACÍ FORMULÁŘ PŘÍMO NA STRÁNCE -->
+      <form role="search" method="get" class="mb-8 flex gap-2 max-w-xl" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+        <div class="relative flex-1">
+          <input type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="Hledat jiný výraz..." class="w-full pl-10 pr-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-sky">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-4 text-slate-400 text-sm"></i>
+        </div>
+        <button type="submit" class="px-5 py-3 rounded-2xl bg-brand-sky hover:bg-sky-500 text-white font-bold text-sm shadow-sm transition-colors cursor-pointer">
+          Hledat
+        </button>
+      </form>
+
+      <!-- SEZNAM NALEZENÝCH VÝSLEDKŮ -->
+      <div class="space-y-6">
+        <?php
+        if ( have_posts() ) :
+            while ( have_posts() ) : the_post();
+                ?>
+                <article class="p-5 sm:p-6 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 hover:border-brand-sky/40 transition-all">
+                  <div class="flex items-center gap-2 text-xs text-slate-400 font-semibold mb-2">
+                    <span class="px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+                      <?php echo get_post_type() === 'post' ? 'Článek / Aktualita' : 'Stránka'; ?>
+                    </span>
+                    <span>•</span>
+                    <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
+                  </div>
+                  <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 font-heading">
+                    <a href="<?php the_permalink(); ?>" class="hover:text-brand-sky transition-colors"><?php the_title(); ?></a>
+                  </h2>
+                  <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                    <?php the_excerpt(); ?>
+                  </div>
+                  <a href="<?php the_permalink(); ?>" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-sky hover:underline">
+                    <span>Otevřít článek</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                  </a>
+                </article>
+                <?php
+            endwhile;
+
+            // Paginace
+            the_posts_pagination(array(
+                'mid_size'  => 2,
+                'prev_text' => '&larr; Předchozí',
+                'next_text' => 'Další &rarr;',
+            ));
+        else :
+            ?>
+            <div class="text-center py-12 px-4 rounded-2xl bg-slate-50 dark:bg-slate-800/30 border border-slate-100 dark:border-slate-800">
+              <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 text-2xl">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+              </div>
+              <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-2">Žádné články pro tento dotaz</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-6">
+                Pro výraz „<?php echo esc_html( get_search_query() ); ?>“ nebyl nalezen žádný článek ani podstránka. Zkuste hledat obecnější slovo nebo využijte rychlé odkazy:
+              </p>
+              <div class="flex flex-wrap justify-center gap-2 max-w-lg mx-auto mb-6">
+                <a href="<?php echo home_url('/#pro-rodice'); ?>" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 hover:border-brand-sky">Rozpis schůzek</a>
+                <a href="<?php echo home_url('/#klubovna'); ?>" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 hover:border-brand-sky">Loděnice Valcha</a>
+                <a href="<?php echo home_url('/#terminovnik'); ?>" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 hover:border-brand-sky">Termínovník</a>
+                <a href="<?php echo home_url('/vedeni/'); ?>" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 hover:border-brand-sky">34 vedoucích oddílu</a>
+              </div>
+              <a href="<?php echo home_url('/'); ?>" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm bg-brand-sky text-white hover:bg-sky-500 transition-colors shadow-sm">
+                <i class="fa-solid fa-house text-xs"></i>
+                <span>Zpět na hlavní stránku</span>
+              </a>
+            </div>
+            <?php
+        endif;
+        ?>
+      </div>
+    </div>
   </main>
 """
 

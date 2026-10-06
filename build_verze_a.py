@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json, re, datetime
-from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html, get_app_version, get_git_commit, save_version_json, update_index_html_version
+from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html, get_app_version, get_git_commit, save_version_json, update_index_html_version, get_search_modal_html, get_search_script_js
 
 BUILD_TIMESTAMP = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
@@ -61,8 +61,13 @@ def get_navbar(is_subpage=False):
           <a href="{prefix}#kontakty" class="px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand-blue hover:bg-slate-100 transition-all">Kontakty</a>
         </nav>
 
-        <!-- CTA & THEME TOGGLE -->
-        <div class="hidden sm:flex items-center gap-2.5">
+        <!-- CTA, THEME TOGGLE & SEARCH -->
+        <div class="hidden sm:flex items-center gap-2">
+          <button onclick="openSearchModal()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 transition-all shadow-xs cursor-pointer flex items-center justify-center gap-2 text-xs font-semibold" title="Vyhledávat na webu (Ctrl+K)" aria-label="Hledat na webu">
+            <i class="fa-solid fa-magnifying-glass text-sm text-slate-500 dark:text-slate-400"></i>
+            <span class="hidden xl:inline text-slate-500">Hledat...</span>
+            <kbd class="hidden xl:inline-block px-1.5 py-0.5 text-[10px] bg-slate-100 dark:bg-slate-700 text-slate-400 rounded border border-slate-200 dark:border-slate-600 font-mono">Ctrl+K</kbd>
+          </button>
           <button onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-yellow-400 dark:hover:bg-slate-700 transition-all shadow-xs cursor-pointer flex items-center justify-center" title="Přepnout tmavý / světlý režim" aria-label="Přepnout režim">
             <i class="fa-solid fa-moon text-base text-slate-800 theme-toggle-icon"></i>
           </button>
@@ -72,8 +77,11 @@ def get_navbar(is_subpage=False):
           </a>
         </div>
 
-        <!-- MOBILE HAMBURGER & THEME TOGGLE -->
-        <div class="flex items-center gap-2 lg:hidden">
+        <!-- MOBILE HAMBURGER, SEARCH & THEME TOGGLE -->
+        <div class="flex items-center gap-1.5 lg:hidden">
+          <button onclick="openSearchModal()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 cursor-pointer" title="Hledat" aria-label="Hledat">
+            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+          </button>
           <button onclick="toggleTheme()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-yellow-400 dark:hover:bg-slate-700 cursor-pointer" title="Přepnout režim" aria-label="Přepnout režim">
             <i class="fa-solid fa-moon text-sm text-slate-800 theme-toggle-icon"></i>
           </button>
@@ -86,6 +94,12 @@ def get_navbar(is_subpage=False):
 
     <!-- MOBILE NAVIGATION DRAWER -->
     <div id="mobileMenu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-3 pb-6 shadow-xl transition-all">
+      <div class="mb-3">
+        <button onclick="openSearchModal(); document.getElementById('mobileMenu').classList.add('hidden');" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 text-left cursor-pointer">
+          <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm"></i>
+          <span>Hledat na webu Jedenáctky...</span>
+        </button>
+      </div>
       <div class="flex flex-col gap-1 text-base font-semibold">
         <a href="{prefix}#pro-rodice" class="px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 flex items-center gap-3 font-bold text-amber-700 dark:text-amber-400 bg-amber-50/50 dark:bg-amber-950/30">
           <i class="fa-solid fa-heart-pulse w-5 text-amber-500"></i> Pro rodiče (Rozpis schůzek & fotky)
@@ -1861,6 +1875,9 @@ def generate_index_a():
     }}
     updateThemeIcons();
   </script>
+
+{get_search_modal_html()}
+{get_search_script_js()}
 </body>
 </html>
 """
@@ -2328,6 +2345,9 @@ def generate_vedeni_a():
     }}
     updateThemeIcons();
   </script>
+
+{get_search_modal_html(prefix="")}
+{get_search_script_js(prefix="", is_subpage=True)}
 </body>
 </html>
 """

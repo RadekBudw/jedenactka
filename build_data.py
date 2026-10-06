@@ -191,4 +191,324 @@ FAQ_ITEMS = [
     }
 ]
 
+def get_search_index(prefix=""):
+    items = [
+        {
+            "title": "Schůzky oddílu (Rozpis 2026/2027)",
+            "desc": "Toulavá smečka (vlčata): Středa 16:00–18:00 • Bárka (vodní skauti): Čtvrtek 16:00–18:00 na loděnici Valcha.",
+            "category": "Schůzky & Program",
+            "url": f"{prefix}#pro-rodice",
+            "icon": "fa-clock",
+            "keywords": "schůzky středa čtvrtek kdy toulavá smečka bárka program časy"
+        },
+        {
+            "title": "Loděnice a klubovna Valcha",
+            "desc": "Stromovka 3, České Budějovice • GPS: 48.9720617N, 14.4690989E • Jak se k nám dostat na kole, pěšky i MHD.",
+            "category": "Klubovna & Mapa",
+            "url": f"{prefix}#klubovna",
+            "icon": "fa-map-location-dot",
+            "keywords": "valcha valši loděnice klubovna adresa kde mapa poloha stromovka gps doprava"
+        },
+        {
+            "title": "Pro rodiče: Informace pro nováčky & fotogalerie",
+            "desc": "Co s sebou na schůzky, oddílový kroj, platby, přihlášky a odkaz na kompletní fotogalerii na Zonerama.",
+            "category": "Pro rodiče",
+            "url": f"{prefix}#pro-rodice",
+            "icon": "fa-heart-pulse",
+            "keywords": "rodiče nováčci přihláška kroj poplatky vybavení co s sebou fotky zonerama galerie"
+        },
+        {
+            "title": "Nábor nových členů do oddílu",
+            "desc": "Přijímáme kluky i holky do vlčat (6–10 let) a skautů (11–15 let). Přijďte se podívat na nezávaznou zkušební schůzku!",
+            "category": "Nábor",
+            "url": f"{prefix}#nabor",
+            "icon": "fa-user-plus",
+            "keywords": "nábor přihláška noví členové chci se přidat zkušební schůzka jak se stát skautem"
+        },
+        {
+            "title": "O 11. oddílu vodních skautů České Budějovice",
+            "desc": "Historie oddílu od roku 1990, tradice černo-žluté vlajky, vodácká výchova a středisko VAVÉHA.",
+            "category": "O oddílu",
+            "url": f"{prefix}#oddil",
+            "icon": "fa-anchor",
+            "keywords": "o oddílu historie tradice vlajka černo žlutá vaveha středisko vodní skauting"
+        },
+        {
+            "title": "Naše paluby (Vlčata, Skauti, Roveři, Klub)",
+            "desc": "Toulavá smečka (6–10 let), Bárka (11–15 let), Roverská VěTeV (15+ let) a Klub 11. oddílu (dospělí a přátelé oddílu).",
+            "category": "Paluby oddílu",
+            "url": f"{prefix}#paluby",
+            "icon": "fa-ship",
+            "keywords": "paluby toulavá smečka vlčata bárka skauti větev roveři klub oddílu věkové kategorie družiny"
+        },
+        {
+            "title": "Kontakty a vedení oddílu",
+            "desc": "Kontaktní e-maily, telefonní čísla na kapitány a vedení jednotlivých palub, bankovní účet a IČO.",
+            "category": "Kontakty",
+            "url": f"{prefix}#kontakty",
+            "icon": "fa-address-book",
+            "keywords": "kontakty telefon email kapitán spojení kde nás najdete bankovní spojení transparentní účet"
+        },
+        {
+            "title": "Kompletní tým vedení (34 vedoucích a rádců)",
+            "desc": "Přehled všech 34 činovníků, rádců posádek, instruktorů a garantů se specializacemi a přezdívkami.",
+            "category": "Vedení oddílu",
+            "url": f"{'vedeni.html' if prefix == '' else prefix + 'vedeni.html'}",
+            "icon": "fa-users",
+            "keywords": "vedení vedoucí rádci činovníci rádce instruktor kapitán tým 34 vedoucích"
+        }
+    ]
+
+    for ev in TERMINOVNIK_BARKA:
+        items.append({
+            "title": f"{ev['title']} ({ev['date']})",
+            "desc": f"Bárka (vodní skauti) • {ev['desc']}",
+            "category": "Termínovník: Bárka",
+            "url": f"{prefix}#terminovnik",
+            "icon": ev.get('icon', 'fa-calendar-day'),
+            "keywords": f"{ev['title']} {ev['date']} {ev['desc']} bárka akce výprava termínovník"
+        })
+
+    for ev in TERMINOVNIK_VLCATA:
+        items.append({
+            "title": f"{ev['title']} ({ev['date']})",
+            "desc": f"Toulavá smečka (vlčata) • {ev['desc']}",
+            "category": "Termínovník: Vlčata",
+            "url": f"{prefix}#terminovnik",
+            "icon": ev.get('icon', 'fa-calendar-day'),
+            "keywords": f"{ev['title']} {ev['date']} {ev['desc']} vlčata akce výprava termínovník"
+        })
+
+    for leader in leaders:
+        nick = leader.get('nickname') or ''
+        name = leader.get('name') or ''
+        role = leader.get('role') or ''
+        deck = leader.get('deck') or ''
+        email = leader.get('email') or ''
+        phone = leader.get('phone') or ''
+        l_id = leader.get('id') or ''
+
+        vedeni_url = 'vedeni.html' if prefix == '' else prefix + 'vedeni.html'
+        target_url = f"{vedeni_url}#leader-{l_id}" if l_id else vedeni_url
+
+        display_title = f"{nick} ({name})" if nick and nick != name else (nick or name)
+        items.append({
+            "title": display_title,
+            "desc": f"{role} • Paluba: {deck}" + (f" • {email}" if email else ""),
+            "category": "Vedení oddílu",
+            "url": target_url,
+            "icon": "fa-user-tag",
+            "keywords": f"{nick} {name} {role} {deck} {email} {phone} vedoucí rádce kontakt"
+        })
+
+    return items
+
+def get_search_modal_html(prefix=""):
+    return f"""  <!-- MODAL VYHLEDÁVÁNÍ -->
+  <div id="searchModal" class="fixed inset-0 z-[100] hidden bg-slate-950/75 backdrop-blur-sm flex items-start justify-center p-3 sm:p-6 md:pt-16 overflow-y-auto" onclick="if(event.target===this) closeSearchModal();">
+    <div class="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transform transition-all">
+      
+      <!-- HLAVIČKA FORMULÁŘE -->
+      <form id="siteSearchForm" action="{prefix}index.html" method="get" class="flex items-center gap-3 px-5 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/60" onsubmit="handleSearchSubmit(event)">
+        <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg"></i>
+        <input id="siteSearchInput" type="search" name="s" placeholder="Hledat schůzky, Valchu, termíny, rádce, kontakty..." class="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 text-base sm:text-lg focus:outline-none" autocomplete="off" oninput="onSearchInput(this.value)">
+        <button type="button" onclick="closeSearchModal()" class="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs transition-colors cursor-pointer" title="Zavřít (Esc)">
+          <kbd class="px-2 py-1 bg-white dark:bg-slate-800 rounded text-[11px] border border-slate-200 dark:border-slate-700 font-mono shadow-2xs">ESC</kbd>
+        </button>
+      </form>
+
+      <!-- VÝSLEDKY & DOPORUČENÉ KATEGORIE -->
+      <div id="searchResultsContainer" class="max-h-[60vh] overflow-y-auto p-4 sm:p-5 space-y-4">
+        <!-- Vykresluje se dynamicky přes JS -->
+      </div>
+
+      <!-- ZÁPATÍ MODALU -->
+      <div class="px-5 py-3.5 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-400">
+        <div class="flex items-center gap-2">
+          <span>Stiskem <kbd class="px-1.5 py-0.5 bg-white dark:bg-slate-800 border rounded font-mono text-[10px]">Enter</kbd> prohledáte celý archiv</span>
+        </div>
+        <button type="submit" form="siteSearchForm" class="text-brand-sky hover:underline font-bold inline-flex items-center gap-1 cursor-pointer">
+          <span>Vyhledat</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>"""
+
+def get_search_script_js(prefix="", is_subpage=False):
+    search_data_json = json.dumps(get_search_index(prefix), ensure_ascii=False)
+    return f"""  <script>
+    // Search data index
+    const SEARCH_INDEX = {search_data_json};
+
+    function removeAccents(str) {{
+      return (str || '').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
+    }}
+
+    function openSearchModal(initialQuery = '') {{
+      const modal = document.getElementById('searchModal');
+      const input = document.getElementById('siteSearchInput');
+      if (!modal || !input) return;
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      if (initialQuery) {{
+        input.value = initialQuery;
+      }}
+      input.focus();
+      onSearchInput(input.value);
+    }}
+
+    function closeSearchModal() {{
+      const modal = document.getElementById('searchModal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }}
+
+    document.addEventListener('keydown', (e) => {{
+      if (e.key === 'Escape') {{
+        closeSearchModal();
+      }}
+      // Ctrl+K nebo Cmd+K nebo klávesa /
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {{
+        e.preventDefault();
+        openSearchModal();
+      }}
+      if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {{
+        e.preventDefault();
+        openSearchModal();
+      }}
+    }});
+
+    function onSearchInput(query) {{
+      const container = document.getElementById('searchResultsContainer');
+      if (!container) return;
+
+      const q = removeAccents(query.trim());
+
+      if (!q) {{
+        // Výchozí stav – doporučené rychlé odkazy a kategorie
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-400">Rychlé volby & doporučené sekce</div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" onclick="quickFillSearch('schůzky')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">🕒 Schůzky 2026/27</button>
+              <button type="button" onclick="quickFillSearch('Valcha')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">⚓ Loděnice Valcha</button>
+              <button type="button" onclick="quickFillSearch('termínovník')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">📅 Termínovník výprav</button>
+              <button type="button" onclick="quickFillSearch('Hopík')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">👤 Hopík (kapitán)</button>
+              <button type="button" onclick="quickFillSearch('Toulavá smečka')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">🐺 Vlčata</button>
+              <button type="button" onclick="quickFillSearch('Bárka')" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors cursor-pointer">⛵ Skauti (Bárka)</button>
+            </div>
+            
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Časté dotazy</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                <a href="{prefix}#pro-rodice" onclick="closeSearchModal()" class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-sky-50 dark:hover:bg-slate-800 transition-all flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-heart-pulse text-xs"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-800 dark:text-slate-200 text-xs">Informace pro rodiče</div>
+                    <div class="text-[11px] text-slate-400">Rozpis, vybavení, fotky</div>
+                  </div>
+                </a>
+                <a href="{prefix}#klubovna" onclick="closeSearchModal()" class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-sky-50 dark:hover:bg-slate-800 transition-all flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-xl bg-sky-100 dark:bg-sky-950/60 text-brand-sky flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-map-location-dot text-xs"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-800 dark:text-slate-200 text-xs">Kde je loděnice Valcha?</div>
+                    <div class="text-[11px] text-slate-400">Stromovka 3, mapa & GPS</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+        return;
+      }}
+
+      // Filtrace indexu
+      const matches = SEARCH_INDEX.filter(item => {{
+        const fullText = removeAccents(`${{item.title}} ${{item.desc}} ${{item.category}} ${{item.keywords || ''}}`);
+        return fullText.includes(q);
+      }});
+
+      if (matches.length === 0) {{
+        container.innerHTML = `
+          <div class="text-center py-8 px-4">
+            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+              <i class="fa-solid fa-magnifying-glass text-base"></i>
+            </div>
+            <div class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-1">Žádné okamžité výsledky pro „${{query}}“</div>
+            <div class="text-xs text-slate-400 max-w-sm mx-auto mb-4">Zkuste zkontrolovat překlep, použít obecnější slovo nebo stisknout Enter pro prohledání celého archivu článků.</div>
+            <button type="submit" form="siteSearchForm" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-brand-sky text-white hover:bg-sky-500 transition-colors">
+              <span>Hledat v celém archivu</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        `;
+        return;
+      }}
+
+      // Vykreslení výsledků
+      let html = `<div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nalezeno ${{matches.length}} výsledků pro „${{query}}“:</div>`;
+      html += `<div class="space-y-2">`;
+      matches.slice(0, 10).forEach(m => {{
+        html += `
+          <a href="${{m.url}}" onclick="closeSearchModal()" class="block p-3 sm:p-3.5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/60 hover:bg-sky-50/80 dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-800 hover:border-sky-200 dark:hover:border-slate-700 transition-all group">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-white dark:bg-slate-700 border border-slate-200/60 dark:border-slate-600 flex items-center justify-center text-brand-sky shrink-0 group-hover:scale-105 transition-transform">
+                <i class="fa-solid ${{m.icon || 'fa-arrow-right'}} text-xs"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="px-2 py-0.5 rounded-md bg-white dark:bg-slate-700 text-[10px] font-bold text-slate-500 dark:text-slate-300 border border-slate-200/60 dark:border-slate-600">${{m.category}}</span>
+                </div>
+                <div class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-brand-sky transition-colors truncate">${{m.title}}</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-0.5">${{m.desc}}</div>
+              </div>
+              <i class="fa-solid fa-chevron-right text-slate-300 dark:text-slate-600 group-hover:text-brand-sky text-xs self-center"></i>
+            </div>
+          </a>
+        `;
+      }});
+      html += `</div>`;
+      container.innerHTML = html;
+    }}
+
+    function quickFillSearch(term) {{
+      const input = document.getElementById('siteSearchInput');
+      if (input) {{
+        input.value = term;
+        input.focus();
+        onSearchInput(term);
+      }}
+    }}
+
+    function handleSearchSubmit(e) {{
+      const query = document.getElementById('siteSearchInput')?.value.trim();
+      // Pokud máme WordPress prostředí, nebráníme odeslání formuláře (?s=query)
+      if (window.location.search || window.location.pathname.includes('/wordpress') || document.querySelector('meta[name="generator"][content*="WordPress"]')) {{
+        return true;
+      }}
+      // Statické demo na GitHub Pages: pokud byl nalezen výsledek, přesměrujeme na první shodu
+      const q = removeAccents(query);
+      if (q) {{
+        const matches = SEARCH_INDEX.filter(item => removeAccents(`${{item.title}} ${{item.desc}} ${{item.keywords || ''}}`).includes(q));
+        if (matches.length > 0) {{
+          e.preventDefault();
+          closeSearchModal();
+          window.location.href = matches[0].url;
+          return false;
+        }}
+      }}
+      return true;
+    }}
+  </script>"""
+
 print("Datasets ready.")
+
