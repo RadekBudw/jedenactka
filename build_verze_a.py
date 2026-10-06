@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json, re, datetime
-from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html, APP_VERSION, get_git_commit
+from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html, get_app_version, get_git_commit, save_version_json, update_index_html_version
 
 BUILD_TIMESTAMP = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
@@ -1592,7 +1592,7 @@ def generate_index_a():
         <span class="text-slate-300 font-bold">11. oddíl vodních skautů České Budějovice</span>
       </div>
       <p class="text-slate-500 text-center sm:text-right flex flex-col sm:flex-row items-center justify-end gap-1.5 sm:gap-2">
-        <span class="text-slate-400">Verze: {APP_VERSION} ({get_git_commit()})</span>
+        <span class="text-slate-400">Verze: {get_app_version()} ({get_git_commit()})</span>
         <span class="hidden sm:inline text-slate-700">•</span>
         <span class="text-slate-400">Aktualizováno: {BUILD_TIMESTAMP}</span>
         <span class="hidden sm:inline text-slate-700">•</span>
@@ -2256,7 +2256,7 @@ def generate_vedeni_a():
         <span class="text-slate-300 font-bold">11. oddíl vodních skautů České Budějovice</span>
       </div>
       <p class="text-slate-500 text-center sm:text-right flex flex-col sm:flex-row items-center justify-end gap-1.5 sm:gap-2">
-        <span class="text-slate-400">Verze: {APP_VERSION} ({get_git_commit()})</span>
+        <span class="text-slate-400">Verze: {get_app_version()} ({get_git_commit()})</span>
         <span class="hidden sm:inline text-slate-700">•</span>
         <span class="text-slate-400">Aktualizováno: {BUILD_TIMESTAMP}</span>
         <span class="hidden sm:inline text-slate-700">•</span>
@@ -2337,3 +2337,6 @@ def generate_vedeni_a():
 
 generate_index_a()
 generate_vedeni_a()
+save_version_json()
+update_index_html_version()
+

@@ -20,6 +20,7 @@ import sys
 import re
 import shutil
 import zipfile
+from build_data import get_app_version
 
 # Zajištění UTF-8 výstupu na Windows konzoli
 if sys.stdout.encoding != 'utf-8':
@@ -169,7 +170,7 @@ Theme URI: https://jedenactka.skauting.cz/
 Author: 11. oddíl vodních skautů České Budějovice
 Author URI: https://jedenactka.skauting.cz/
 Description: Oficiální moderní a responzivní WordPress šablona 11. oddílu vodních skautů České Budějovice.
-Version: 1.1.0
+Version: {get_app_version()}
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: jedenactka

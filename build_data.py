@@ -1,4 +1,4 @@
-import json, re, datetime, subprocess
+import json, re, datetime, subprocess, os
 
 with open('leaders.json', encoding='utf-8') as f:
     leaders = json.load(f)
@@ -6,24 +6,96 @@ with open('leaders.json', encoding='utf-8') as f:
 def h(s):
     return (s or '').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
 
-APP_VERSION = "1.2.0"
-
 def get_git_commit():
     try:
         return subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], stderr=subprocess.DEVNULL).decode().strip()
     except Exception:
         return "780deb9"
 
+def get_git_commit_count():
+    try:
+        return int(subprocess.check_output(["git", "rev-list", "--count", "HEAD"], stderr=subprocess.DEVNULL).decode().strip())
+    except Exception:
+        return 8
+
+def get_app_version():
+    try:
+        status = subprocess.check_output(["git", "status", "--porcelain"], stderr=subprocess.DEVNULL).decode().strip()
+        count = get_git_commit_count()
+        if status:
+            count += 1
+        return f"1.2.{count}"
+    except Exception:
+        return "1.2.9"
+
 def get_version_meta_html():
     commit = get_git_commit()
+    version = get_app_version()
     now = datetime.datetime.now()
     iso_time = now.strftime("%Y-%m-%d %H:%M:%S")
     return f"""  <!-- NEVIDITELNÉ METADATA VERZOVÁNÍ -->
-  <meta name="app-version" content="{APP_VERSION}">
+  <meta name="app-version" content="{version}">
   <meta name="build-timestamp" content="{iso_time}">
   <meta name="git-commit" content="{commit}">
   <meta name="generator" content="Antigravity / 11. oddíl vodních skautů ČB">
-  <!-- JEDENACTKA_VERSION: git={commit} time={iso_time} -->"""
+  <!-- JEDENACTKA_VERSION: ver={version} git={commit} time={iso_time} -->"""
+
+def save_version_json():
+    version = get_app_version()
+    commit = get_git_commit()
+    now = datetime.datetime.now()
+    data = {
+        "app_version": version,
+        "git_commit": commit,
+        "build_timestamp": now.strftime("%Y-%m-%d %H:%M:%S"),
+        "build_display": now.strftime("%d.%m.%Y %H:%M")
+    }
+    with open('version.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+def update_index_html_version():
+    try:
+        if not os.path.exists('index.html'):
+            return
+        with open('index.html', 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        version = get_app_version()
+        commit = get_git_commit()
+        now = datetime.datetime.now()
+        iso_time = now.strftime("%Y-%m-%d %H:%M:%S")
+        disp_time = now.strftime("%d.%m.%Y %H:%M")
+
+        meta_replacement = f"""  <!-- NEVIDITELNÉ METADATA VERZOVÁNÍ -->
+  <meta name="app-version" content="{version}">
+  <meta name="build-timestamp" content="{iso_time}">
+  <meta name="git-commit" content="{commit}">
+  <meta name="generator" content="Antigravity / 11. oddíl vodních skautů ČB">
+  <!-- JEDENACTKA_VERSION: ver={version} git={commit} time={iso_time} -->"""
+
+        content = re.sub(
+            r'  <!-- NEVIDITELNÉ METADATA VERZOVÁNÍ -->.*?<!-- JEDENACTKA_VERSION:[^>]*-->',
+            meta_replacement,
+            content,
+            flags=re.DOTALL
+        )
+
+        content = re.sub(
+            r'<span class="text-slate-400">Verze:[^<]*</span>',
+            f'<span class="text-slate-400">Verze: {version} ({commit})</span>',
+            content
+        )
+        content = re.sub(
+            r'<span class="text-slate-400">Aktualizováno:[^<]*</span>',
+            f'<span class="text-slate-400">Aktualizováno: {disp_time}</span>',
+            content
+        )
+
+        with open('index.html', 'w', encoding='utf-8') as f:
+            f.write(content)
+    except Exception as e:
+        print(f"Chyba při aktualizaci index.html: {e}")
+
 
 TERMINOVNIK_BARKA = [
     {"date": "19.–20. 9.", "title": "Brigáda na Švýcaráku", "desc": "Pomoc správcům základny a příprava lodního materiálu na novou sezónu.", "type": "Práce & Zábava", "icon": "fa-hammer"},
