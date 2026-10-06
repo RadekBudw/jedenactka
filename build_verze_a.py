@@ -640,23 +640,12 @@ def generate_index_a():
             </div>
             
             <!-- Bottom caption card -->
-            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-yellow-400/40 text-white shadow-xl z-10 transition-all group-hover:border-yellow-400/80">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <span id="heroTag" class="text-xs font-bold text-yellow-300 uppercase tracking-wider">Společná voda 2026</span>
-                </div>
-                <span id="heroSub" class="text-[11px] text-slate-400 font-medium">Sjíždění šlajsny na kánoi</span>
+            <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-slate-950/80 backdrop-blur-md border border-yellow-400/35 text-white shadow-lg z-10 transition-all group-hover:border-yellow-400/70">
+              <div class="flex items-center justify-between gap-2">
+                <span id="heroTag" class="text-[11px] sm:text-xs font-bold text-yellow-300 uppercase tracking-wider truncate">Společná voda 2026</span>
+                <span id="heroSub" class="text-[10px] sm:text-[11px] text-slate-400 font-medium shrink-0">Sjíždění šlajsny na kánoi</span>
               </div>
-              <p id="heroTitle" class="text-xs font-semibold text-slate-200 mt-1 leading-snug">Vodácká dobrodružství & peřeje na řece</p>
-
-              <!-- Progress bar / dots + Click hint -->
-              <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                <div class="flex items-center gap-1.5" id="heroDots" onclick="event.stopPropagation()">
-                </div>
-                <span class="text-[10px] text-yellow-300/80 font-bold flex items-center gap-1">
-                  <i class="fa-solid fa-hand-pointer text-[9px]"></i> Kliknutím změníte
-                </span>
-              </div>
+              <p id="heroTitle" class="text-xs font-semibold text-slate-200 mt-0.5 leading-tight truncate sm:whitespace-normal">Vodácká dobrodružství & peřeje na řece</p>
             </div>
           </div>
         </div>
