@@ -6,15 +6,20 @@ with open('leaders.json', encoding='utf-8') as f:
 def h(s):
     return (s or '').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
 
-def get_version_meta_html():
+APP_VERSION = "1.2.0"
+
+def get_git_commit():
     try:
-        commit = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], stderr=subprocess.DEVNULL).decode().strip()
+        return subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], stderr=subprocess.DEVNULL).decode().strip()
     except Exception:
-        commit = "d2f8fca"
+        return "780deb9"
+
+def get_version_meta_html():
+    commit = get_git_commit()
     now = datetime.datetime.now()
     iso_time = now.strftime("%Y-%m-%d %H:%M:%S")
     return f"""  <!-- NEVIDITELNÉ METADATA VERZOVÁNÍ -->
-  <meta name="app-version" content="1.2.0">
+  <meta name="app-version" content="{APP_VERSION}">
   <meta name="build-timestamp" content="{iso_time}">
   <meta name="git-commit" content="{commit}">
   <meta name="generator" content="Antigravity / 11. oddíl vodních skautů ČB">

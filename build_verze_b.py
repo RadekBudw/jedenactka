@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json, re, datetime
-from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html
+from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html, APP_VERSION, get_git_commit
 
 BUILD_TIMESTAMP = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
@@ -1297,6 +1297,8 @@ def generate_index_b():
         <span class="font-bold text-white">11. oddíl vodních skautů České Budějovice</span>
       </div>
       <div class="text-slate-400 text-center sm:text-right flex flex-col sm:flex-row items-center justify-end gap-1.5 sm:gap-2">
+        <span class="text-slate-300">Verze: {APP_VERSION} ({get_git_commit()})</span>
+        <span class="hidden sm:inline text-slate-600">•</span>
         <span class="text-slate-300">Publikováno: {BUILD_TIMESTAMP}</span>
         <span class="hidden sm:inline text-slate-600">•</span>
         <span>Registrováno u Junák – český skaut, 4. středisko VAVÉHA České Budějovice.</span>
@@ -1936,6 +1938,8 @@ def generate_vedeni_b():
         <span class="font-bold text-white">11. oddíl vodních skautů České Budějovice</span>
       </div>
       <div class="text-slate-400 text-center sm:text-right flex flex-col sm:flex-row items-center justify-end gap-1.5 sm:gap-2">
+        <span class="text-slate-300">Verze: {APP_VERSION} ({get_git_commit()})</span>
+        <span class="hidden sm:inline text-slate-600">•</span>
         <span class="text-slate-300">Publikováno: {BUILD_TIMESTAMP}</span>
         <span class="hidden sm:inline text-slate-600">•</span>
         <span>Registrováno u Junák – český skaut, 4. středisko VAVÉHA České Budějovice.</span>
