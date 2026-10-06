@@ -1,11 +1,24 @@
-# -*- coding: utf-8 -*-
-import json, re
+import json, re, datetime, subprocess
 
 with open('leaders.json', encoding='utf-8') as f:
     leaders = json.load(f)
 
 def h(s):
     return (s or '').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
+
+def get_version_meta_html():
+    try:
+        commit = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], stderr=subprocess.DEVNULL).decode().strip()
+    except Exception:
+        commit = "d2f8fca"
+    now = datetime.datetime.now()
+    iso_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    return f"""  <!-- NEVIDITELNÉ METADATA VERZOVÁNÍ -->
+  <meta name="app-version" content="1.2.0">
+  <meta name="build-timestamp" content="{iso_time}">
+  <meta name="git-commit" content="{commit}">
+  <meta name="generator" content="Antigravity / 11. oddíl vodních skautů ČB">
+  <!-- JEDENACTKA_VERSION: git={commit} time={iso_time} -->"""
 
 TERMINOVNIK_BARKA = [
     {"date": "19.–20. 9.", "title": "Brigáda na Švýcaráku", "desc": "Pomoc správcům základny a příprava lodního materiálu na novou sezónu.", "type": "Práce & Zábava", "icon": "fa-hammer"},

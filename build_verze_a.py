@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json, re, datetime
-from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS
+from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html
 
 BUILD_TIMESTAMP = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
@@ -228,6 +228,7 @@ def generate_index_a():
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>11. oddíl vodních skautů České Budějovice | Moderní flotila</title>
   <meta name="description" content="Oficiální moderní prezentace 11. chlapeckého oddílu vodních skautů v Českých Budějovicích. Skauting, pramice, kanoe, dobrodružství pro kluky od 6 let.">
+{get_version_meta_html()}
   
   <script>
     if (localStorage.theme === 'dark') {{
@@ -1971,6 +1972,7 @@ def generate_vedeni_a():
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vedení oddílu | 11. oddíl vodních skautů České Budějovice</title>
+{get_version_meta_html()}
   
   <script>
     if (localStorage.theme === 'dark') {{
