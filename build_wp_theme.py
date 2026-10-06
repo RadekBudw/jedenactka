@@ -142,6 +142,23 @@ WP_CONTENT_STYLES = """
     }
 """
 
+def optimize_asset_image(src, dst, max_dim=None, quality=75):
+    try:
+        from PIL import Image
+        with Image.open(src) as img:
+            if img.format == 'PNG' and img.mode in ('RGBA', 'LA'):
+                if max_dim:
+                    img.thumbnail((max_dim, max_dim), Image.Resampling.LANCZOS)
+                img.save(dst, format='PNG', optimize=True)
+                return
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            if max_dim:
+                img.thumbnail((max_dim, max_dim), Image.Resampling.LANCZOS)
+            img.save(dst, format='JPEG', quality=quality, optimize=True, progressive=True)
+    except Exception:
+        shutil.copy2(src, dst)
+
 def prepare_wp_theme(source_dir="verzeA"):
     source_dir = os.path.abspath(source_dir)
     if not os.path.exists(source_dir):
@@ -154,13 +171,33 @@ def prepare_wp_theme(source_dir="verzeA"):
         shutil.rmtree(THEME_DIR)
     os.makedirs(THEME_DIR, exist_ok=True)
 
-    # 2. Zkopírovat všechny obrázky a složky (avatary, fotky, loga)
+    # Načíst text z index.html a vedeni.html pro zjištění reálně použitých podkladů
+    referenced_content = ""
+    for ref_f in ["index.html", "vedeni.html"]:
+        ref_p = os.path.join(source_dir, ref_f)
+        if os.path.exists(ref_p):
+            with open(ref_p, "r", encoding="utf-8") as rf:
+                referenced_content += rf.read()
+
+    # 2. Inteligentní zkopírování a optimalizace použitých obrázků (avatary, fotky, loga)
     for item in os.listdir(source_dir):
         s_item = os.path.join(source_dir, item)
         d_item = os.path.join(THEME_DIR, item)
         if os.path.isdir(s_item):
-            shutil.copytree(s_item, d_item)
-        elif item.lower().endswith(('.jpg', '.jpeg', '.png', '.svg', '.webp', '.gif', '.ico')):
+            os.makedirs(d_item, exist_ok=True)
+            for sub in os.listdir(s_item):
+                ss = os.path.join(s_item, sub)
+                dd = os.path.join(d_item, sub)
+                if item == "avatars":
+                    # Avatary vedoucích zmenšit na 220x220 px (šetří cca 14 MB bez ztráty kvality na webu)
+                    optimize_asset_image(ss, dd, max_dim=220, quality=75)
+                elif sub in referenced_content:
+                    optimize_asset_image(ss, dd, max_dim=1100, quality=75)
+        elif item.lower().endswith(('.jpg', '.jpeg', '.png')):
+            # Zkopírovat pouze skutečně použité obrázky a optimalizovat je pro web
+            if item in referenced_content:
+                optimize_asset_image(s_item, d_item, max_dim=1100, quality=75)
+        elif item.lower().endswith(('.svg', '.ico', '.json')):
             shutil.copy2(s_item, d_item)
 
     # 3. Vytvořit style.css s hlavičkou šablony
@@ -275,7 +312,7 @@ if (is_front_page()) {
 
     # 11. Zabalení do ZIP archivu
     print(f"🗜️ Balím do ZIP archivu: {OUTPUT_ZIP}...")
-    with zipfile.ZipFile(OUTPUT_ZIP, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    with zipfile.ZipFile(OUTPUT_ZIP, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zipf:
         for root, dirs, files in os.walk(THEME_DIR):
             for file in files:
                 file_path = os.path.join(root, file)
