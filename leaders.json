@@ -1,0 +1,532 @@
+[
+  {
+    "name": "Martin Hájek",
+    "raw": [
+      "Martin Hájek",
+      "– Hopík",
+      "kapitán oddílu",
+      "– vůdce oddílu",
+      "hopik@jedenactka.eu",
+      "tel.: 733 238 774",
+      "Má na starosti:",
+      "vedení oddílu, přípravu a organizaci výprav, vícedenních akcí a táborů",
+      "Kvalifikace:",
+      "kapitánská zkouška, vůdcovská zkouška, zdravotník zotavovacích akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/hop-2.png"
+  },
+  {
+    "name": "David Hacker",
+    "raw": [
+      "David Hacker",
+      "–",
+      "Knedlík",
+      "důstojník",
+      "Toulavé smečky",
+      "hlavní vedoucí Toulavé smečky",
+      "knedlik@jedenactka.eu",
+      "tel.: 604 458 758",
+      "Má na starosti:",
+      "přípravu a organizaci vlčáckých výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška, zdravotník zotavovacích akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2023/01/323578827_1321790888585316_5274706031939620590_n-252x300.jpg"
+  },
+  {
+    "name": "Jáchym Řehounek",
+    "raw": [
+      "Jáchym Řehounek",
+      "–",
+      "Čáp",
+      "garant čtvrteční schůzky",
+      "cap@jedenactka.eu",
+      "tel.: 732 405 827",
+      "Má na starosti:",
+      "garantování čtvrteční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2025/09/DSC5681-3-1024x897.jpg"
+  },
+  {
+    "name": "Matěj Bajgar",
+    "raw": [
+      "Matěj Bajgar",
+      "–",
+      "Myšák",
+      "garant středeční schůzky",
+      "matejb@jedenactka.eu",
+      "tel.: 778 019 042",
+      "Má na starosti:",
+      "garantování středeční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2025/09/IMG-20250921-WA0004.jpg"
+  },
+  {
+    "name": "Jan Bartík",
+    "raw": [
+      "Jan Bartík",
+      "–",
+      "Kraken",
+      "lodivod",
+      "kraken@jedenactka.eu",
+      "tel.: 702 225 839",
+      "Má na starosti:",
+      "přípravu a organizaci vlčáckých výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "vůdcovská zkouška, zdravotník zotavovacích akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2024/10/Snimek-obrazovky-2024-10-22-222752.png"
+  },
+  {
+    "name": "Vít Sattran",
+    "raw": [
+      "Vít Sattran",
+      "–",
+      "Sponzor",
+      "lodivod",
+      "+",
+      "fotograf",
+      "sponzor@jedenactka.eu",
+      "tel.: 735 138 332",
+      "Má na starosti:",
+      "čtvrteční schůzku, přípravu a organizaci vlčáckých výprav a vícedenních akcí, focení akcí, když zrovna nezapomene foťák"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2024/10/Snimek-obrazovky-2023-10-06-v-15.25.24-1.png"
+  },
+  {
+    "name": "Leontýna Maurerová",
+    "raw": [
+      "Leontýna Maurerová",
+      "–",
+      "Rusalka",
+      "lodivod",
+      "rusalka@jedenactka.eu",
+      "tel.: 770 699 970",
+      "Má na starosti:",
+      "přípravu a organizaci vlčáckých výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "vůdcovská zkouška, zdravotník zotavovacích akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2025/08/IMG-20250826-WA0001-1-768x1024.jpg"
+  },
+  {
+    "name": "Hugo Bajgar",
+    "raw": [
+      "Hugo Bajgar",
+      "–",
+      "Achilles",
+      "lodivod",
+      "hugo@jedenactka.eu",
+      "tel.: 776 852 633",
+      "Má na starosti:",
+      "středeční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2025/09/IMG-20250926-WA0003-1-925x1024.jpg"
+  },
+  {
+    "name": "Christián Maurer",
+    "raw": [
+      "Christián Maurer",
+      "–",
+      "Sisi",
+      "lodivod",
+      "sisi@jedenactka.eu",
+      "tel.: 770 699 971",
+      "Má na starosti:",
+      "čtvrteční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2026/09/8b866bc1-98e5-451b-bc01-58e433f400e8.jpg"
+  },
+  {
+    "name": "Šimon Rucki",
+    "raw": [
+      "Šimon Rucki",
+      "–",
+      "Bobr",
+      "lodivod",
+      "simon@jedenactka.eu",
+      "tel.: 739 845 059",
+      "Má na starosti:",
+      "čtvrteční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-20-at-14.51.17-721x1024.jpeg"
+  },
+  {
+    "name": "Filip Vácha",
+    "raw": [
+      "Filip Vácha",
+      "–",
+      "Medůza",
+      "lodivod",
+      "meduza@jedenactka.eu",
+      "tel.: 734 269 064",
+      "Má na starosti:",
+      "středeční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-20-at-20.45.02.jpeg"
+  },
+  {
+    "name": "Ondřej Čapek",
+    "raw": [
+      "Ondřej Čapek",
+      "–",
+      "Tulák",
+      "lodivod",
+      "tulak@jedenactka.eu",
+      "tel.: 723 985 680",
+      "Má na starosti:",
+      "přípravu a organizaci vlčáckých výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2025/09/IMG_20250412_173225170_HDR-955x1024.jpg"
+  },
+  {
+    "name": "Richard Kašpar",
+    "raw": [
+      "Richard Kašpar",
+      "– Ríša",
+      "lodivod",
+      "risa@jedenactka.eu",
+      "tel.: 730 951 605",
+      "Má na starosti:",
+      "přípravu a organizaci vlčáckých výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/risa.png"
+  },
+  {
+    "name": "Adam Klabouch",
+    "raw": [
+      "Adam Klabouch",
+      "– Trasher",
+      "lodivod",
+      "adam@jedenactka.eu",
+      "tel.: 777 175 430",
+      "Má na starosti:",
+      "rady nad zlato ve vedení oddílu, pomoc při nesnázích",
+      "Kvalifikace:",
+      "vůdcovská zkouška, zdravotník zotavovacích akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/adam.png"
+  },
+  {
+    "name": "Matěj Jerhot",
+    "raw": [
+      "Matěj Jerhot",
+      "– Jerhi",
+      "lodivod",
+      "ctenar@jedenactka.eu",
+      "tel.: 737 156 635",
+      "Má na starosti:",
+      "přípravu a organizaci vlčáckých výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/Jerhi.png"
+  },
+  {
+    "name": "Václav Ludvík",
+    "raw": [
+      "Václav Ludvík",
+      "– Venda",
+      "lodivod",
+      "venda@jedenactka.eu",
+      "Má na starosti:",
+      "Kalkulace neúspěchu zaručena",
+      "Kvalifikace:",
+      "je mu hodně"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/vend-683x1024.jpg"
+  },
+  {
+    "name": "Vít Veltrubský",
+    "raw": [
+      "Vít Veltrubský",
+      "– Vodník",
+      "(/Slon)",
+      "1/2 důstojníka bárky",
+      "pozice",
+      ": oblastní ředitel",
+      "vodnik@jedenactka.eu",
+      "tel.: 724 687 854",
+      "Má na starosti:",
+      "chod skautské častí oddílu, supervizi schůzek, přípravu a organizaci skautských výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/49299722177_8a0d14ba0f_c.jpg"
+  },
+  {
+    "name": "František Bajgar",
+    "raw": [
+      "František Bajgar",
+      "–",
+      "Škarpák",
+      "1/2. důstojníka bárky",
+      "pozice",
+      ": food quantity control",
+      "skarpak@jedenactka.eu",
+      "tel.: 777 038 647",
+      "Má na starosti:",
+      "chod skautské častí oddílu, přípravu a organizaci skautských výprav a vícedenních akcí, dojídání zbytků",
+      "Kvalifikace:",
+      "škola života"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2023/10/Snimek-obrazovky-2023-10-06-v-15.23.59.png"
+  },
+  {
+    "name": "Max Rosenthaler",
+    "raw": [
+      "Max Rosenthaler",
+      "–",
+      "Werran",
+      "garant středeční schůzky",
+      "werran@jedenactka.eu",
+      "tel.: 728 729 518",
+      "Má na starosti:",
+      "garantování středeční schůzky, přípravu a organizaci skautských výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2025/08/IMG-20250826-WA0002-1-742x1024.jpg"
+  },
+  {
+    "name": "František Kratochvíl",
+    "raw": [
+      "František Kratochvíl",
+      "–",
+      "Fanda krátký",
+      "garant čtvrteční schůzky",
+      "franta@jedenactka.eu",
+      "tel.: 722 320 570",
+      "Má na starosti:",
+      "garantování čtvrteční schůzky, přípravu a organizaci skautských výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2026/09/fee8d3af-9dc2-421b-9fbf-4f368679b2b8.jpg"
+  },
+  {
+    "name": "Ondřej Ošmera",
+    "raw": [
+      "Ondřej Ošmera",
+      "–",
+      "Sekáč",
+      "lodivod",
+      "sekac@jedenactka.eu",
+      "tel.: 703 978 629",
+      "Má na starosti:",
+      "čtvrteční schůzky, přípravu a organizaci skautských výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-10-at-20.55.30-768x1024.jpeg"
+  },
+  {
+    "name": "Jakub Nejedlý",
+    "raw": [
+      "Jakub Nejedlý",
+      "–",
+      "Střípek",
+      "lodivod",
+      "stripek@jedenactka.eu",
+      "tel.: 792 338 518",
+      "Má na starosti:",
+      "středeční schůzky, přípravu a organizaci skautských výprav a vícedenních akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2026/09/1000004546-576x1024.jpg"
+  },
+  {
+    "name": "David Ujčík",
+    "raw": [
+      "David Ujčík",
+      "– Davído",
+      "(/Tchoř)",
+      "lodivod",
+      "pozice:",
+      "výtvarný ředitel",
+      "davido@jedenactka.eu",
+      "tel.: 605 380 116",
+      "Má na starosti:",
+      "přípravu a organizaci skautských výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška, škola života"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/48569736436_3c8b8308f9_c.jpg"
+  },
+  {
+    "name": "Valdemar Vokálek",
+    "raw": [
+      "Valdemar Vokálek",
+      "– Valda",
+      "lodivod",
+      "+ zdravotník",
+      "pozice:",
+      "stínový ministr",
+      "valda@jedenactka.eu",
+      "tel.: 606 262 434",
+      "Má na starosti:",
+      "úplně levá ruka důstojníka Bárky, moudrost na dálku, ucházející reprezentace navenek,",
+      "někdy něco zorganizuje",
+      "Kvalifikace:",
+      "čekatelská zkouška, zdravotník zotavovacích akcí"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2023/01/Snimek-obrazovky-2023-01-04-v-21.43.17-1-917x1024.png"
+  },
+  {
+    "name": "Antonín Malec",
+    "raw": [
+      "Antonín Malec",
+      "–",
+      "Harry",
+      "lodivod",
+      "harry@jedenactka.eu",
+      "tel.: 722 058 376"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2023/09/egwefwe.jpg"
+  },
+  {
+    "name": "Ondřej Polák",
+    "raw": [
+      "Ondřej Polák",
+      "–",
+      "Kecal",
+      "lodivod",
+      "kecal@jedenactka.eu"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2023/10/Snimek-obrazovky-2023-10-06-v-15.25.11.png"
+  },
+  {
+    "name": "Vítězslav Černý",
+    "raw": [
+      "Vítězslav Černý",
+      "–",
+      "Vítek",
+      "lodiv",
+      "od",
+      "vita@jedenactka.eu",
+      "tel.: 732 908 852",
+      "Má na starosti:",
+      "přípravu a organizaci skautských výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "škola života"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2024/10/Snimek-obrazovky-2023-10-06-v-19.00.31-805x1024-1.png"
+  },
+  {
+    "name": "Jaroslav Jílek",
+    "raw": [
+      "Jaroslav Jílek",
+      "–",
+      "Pampárek",
+      "lodivod",
+      "pamparek@jedenactka.eu",
+      "tel.: 734 269 022",
+      "Má na starosti:",
+      "přípravu a organizaci skautských výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška (snad brzy)"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2023/10/376394004_666731212190741_171112233998724638_n.jpg"
+  },
+  {
+    "name": "Kryštof Klabouch",
+    "raw": [
+      "Kryštof Klabouch",
+      "– Vokoun",
+      "(/KK)",
+      "lodivod",
+      "pozice",
+      ": generální ředitel",
+      "vokoun@jedenactka.eu",
+      "tel.: 773 215 613",
+      "Má na starosti:",
+      "rady nad zlato, přípravu a organizaci skautských výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška, škola života"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/01/48569884482_95f196e10e_o-683x1024.jpg"
+  },
+  {
+    "name": "Mag. iur.",
+    "raw": [
+      "Mag. iur.",
+      "Christopher Alexander De La Cruz",
+      "– Šaman",
+      "(/CC)",
+      "lodivod",
+      "pozice",
+      ": manažer tabulkových systémů",
+      "saman@jedenactka.eu",
+      "tel.: 721 861 066",
+      "Má na starosti:",
+      "SkautIS odborník, pomocná ruka k nezaplacení",
+      "Kvalifikace:",
+      "čekatelská zkouška, škola života"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2018/12/jákopie-1024x1024.jpg"
+  },
+  {
+    "name": "Michal Čutka",
+    "raw": [
+      "Michal Čutka",
+      "– Majkl",
+      "(/[həʊlˈəˈləʊn])",
+      "lodivod",
+      "pozice:",
+      "spolu-garant",
+      "michal.cutka@gmail.com",
+      "tel.: 720 473 882",
+      "Má na starosti:",
+      "středně použitelný člen, přípravu a organizaci skautských výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška, zdravotník zotavovacích akcí, škola života"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/49698907387_ffd2e1e0dd_c.jpg"
+  },
+  {
+    "name": "Ondřej Šustr",
+    "raw": [
+      "Ondřej Šustr",
+      "– Troll",
+      "lodivod",
+      "pozice:",
+      "manažer pro dostatečný odpočinek",
+      "ondra@jedenactka.eu",
+      "tel.: 728 965 289",
+      "Má na starosti:",
+      "above average, přípravu a organizaci skautských výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška, zdravotník zotavovacích akcí, škola života"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/49698072008_4fb1d67eec_c.jpg"
+  },
+  {
+    "name": "Tomáš Tříska",
+    "raw": [
+      "Tomáš Tříska",
+      "– Tomášek",
+      "(/Tom)",
+      "lodivod",
+      "pozice:",
+      "zdravotník bez dekretu a schopností",
+      "tom@jedenactka.eu",
+      "tel.: 607 291 025",
+      "Má na starosti:",
+      "obě ruce důstojníka skautů, vaření mňaminek, přípravu a organizaci skautských výprav a vícedenních akcí",
+      "Kvalifikace:",
+      "čekatelská zkouška, škola života"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/48569878362_43bdfe4b4e_c.jpg"
+  },
+  {
+    "name": "MUDr. Jaromír Pokorný",
+    "raw": [
+      "MUDr. Jaromír Pokorný",
+      "– Dráček",
+      "lodivod",
+      "pozice:",
+      "neuvedeno",
+      "tel.: 724 302 496",
+      "Má na starosti:",
+      "„kdyby někdy někdo něco potřeboval … že si to tam muže najít“",
+      "Kvalifikace:",
+      "čekatelská zkouška, vysoká škola života"
+    ],
+    "img": "https://jedenactka.skauting.cz/wp-content/uploads/2020/04/14441123_1930693417161592_8977817897876152797_n.jpg"
+  }
+]

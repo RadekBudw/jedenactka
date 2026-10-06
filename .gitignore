@@ -1,0 +1,12 @@
+# Lokální konfigurace s hesly (NIKDY necommitovat)
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Dočasné sestavení WordPress šablony
+wp_theme_build/
+
+# Zkompilované ZIP balíčky (generují se automaticky pomocí python build_wp_theme.py)
+*.zip

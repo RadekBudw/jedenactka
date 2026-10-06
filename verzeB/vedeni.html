@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vedení oddílu | 11. oddíl vodních skautů České Budějovice</title>
+  
+  <script>
+    if (localStorage.theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            scout: {
+              blue: '#005080',
+              navy: '#002D5A',
+              cyan: '#009BE0',
+              sand: '#F4F6F8',
+              sandDark: '#E5E9EE'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&family=The+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Source Sans 3', sans-serif; }
+    h1, h2, h3, h4, .font-heading { font-family: 'The Sans', 'Source Sans 3', sans-serif; }
+
+    /* Plynulý přechod při přepnutí motivu */
+    html.theme-transition,
+    html.theme-transition *,
+    html.theme-transition *:before,
+    html.theme-transition *:after {
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease !important;
+    }
+
+    /* ========================================================= */
+    /* DENNÍ REŽIM - VYSOKÝ KONTRAST A MAXIMÁLNÍ ČITELNOST       */
+    /* ========================================================= */
+    html:not(.dark) body {
+      background-color: #f8f9fa;
+      color: #0f172a;
+    }
+    html:not(.dark) .leader-card-b p,
+    html:not(.dark) .bg-white p,
+    html:not(.dark) .bg-slate-50 p {
+      color: #1e293b;
+    }
+    html:not(.dark) .text-scout-navy {
+      color: #002d5a !important;
+    }
+    html:not(.dark) .text-slate-900 {
+      color: #071527 !important;
+    }
+    html:not(.dark) .text-slate-800 {
+      color: #0f172a !important;
+    }
+    html:not(.dark) .text-slate-700 {
+      color: #0f172a !important;
+    }
+    html:not(.dark) .text-slate-600 {
+      color: #1e293b !important;
+    }
+    html:not(.dark) .text-slate-500 {
+      color: #334155 !important;
+    }
+    html:not(.dark) .text-slate-400 {
+      color: #475569 !important;
+    }
+
+    /* Zachování světlého textu v tmavých blocích v denním režimu */
+    html:not(.dark) .bg-slate-950,
+    html:not(.dark) .bg-slate-900,
+    html:not(.dark) footer.bg-slate-950,
+    html:not(.dark) .bg-scout-navy {
+      color: #ffffff;
+    }
+    html:not(.dark) .bg-scout-navy h1,
+    html:not(.dark) .bg-scout-navy strong,
+    html:not(.dark) .bg-slate-950 strong,
+    html:not(.dark) .bg-slate-900 strong,
+    html:not(.dark) footer.bg-slate-950 strong {
+      color: #ffffff !important;
+    }
+    html:not(.dark) .bg-slate-950 p,
+    html:not(.dark) .bg-slate-900 p,
+    html:not(.dark) footer.bg-slate-950 p,
+    html:not(.dark) .bg-scout-navy p {
+      color: #e2e8f0 !important;
+    }
+    html:not(.dark) .bg-slate-950 span.text-slate-300,
+    html:not(.dark) .bg-slate-900 span.text-slate-300,
+    html:not(.dark) footer.bg-slate-950 span.text-slate-300,
+    html:not(.dark) .bg-scout-navy span.text-slate-300,
+    html:not(.dark) .bg-scout-navy .text-slate-300 {
+      color: #cbd5e1 !important;
+    }
+    html:not(.dark) .bg-slate-950 span.text-slate-400,
+    html:not(.dark) .bg-slate-900 span.text-slate-400,
+    html:not(.dark) footer.bg-slate-950 span.text-slate-400,
+    html:not(.dark) footer.bg-slate-950 p.text-slate-400,
+    html:not(.dark) footer.bg-slate-950 p.text-slate-500,
+    html:not(.dark) .bg-scout-navy span.text-slate-400,
+    html:not(.dark) .bg-scout-navy .text-slate-400 {
+      color: #94a3b8 !important;
+    }
+    html:not(.dark) .bg-slate-950 strong,
+    html:not(.dark) .bg-slate-900 strong,
+    html:not(.dark) footer.bg-slate-950 strong,
+    html:not(.dark) .bg-scout-navy strong {
+      color: #ffffff !important;
+    }
+
+    /* ========================================================= */
+    /* TMAVÝ REŽIM PRO VEDENÍ B                                  */
+    /* ========================================================= */
+    .dark {
+      color-scheme: dark;
+    }
+    .dark body {
+      background-color: #070e1d !important;
+      color: #f1f5f9 !important;
+    }
+    .dark header {
+      background-color: rgba(11, 21, 40, 0.95) !important;
+      border-color: rgba(30, 41, 59, 0.8) !important;
+    }
+    .dark nav a {
+      color: #cbd5e1 !important;
+    }
+    .dark nav a:hover {
+      color: #38bdf8 !important;
+    }
+    .dark #mobileMenuB {
+      background-color: #0f1c34 !important;
+      border-color: #1e293b !important;
+    }
+    .dark #mobileMenuB a {
+      color: #e2e8f0 !important;
+    }
+    .dark #mobileMenuB a:hover {
+      background-color: #1e2e4a !important;
+    }
+    .dark section.bg-scout-sand {
+      background-color: #0b1528 !important;
+      border-color: #1e2e4a !important;
+    }
+    .dark .bg-white {
+      background-color: #0f1c34 !important;
+      border-color: #1e2e4a !important;
+      color: #f1f5f9 !important;
+    }
+    .dark .bg-slate-50,
+    .dark .bg-slate-100,
+    .dark .bg-slate-200,
+    .dark .bg-scout-sand,
+    .dark .bg-scout-sandDark {
+      background-color: #162544 !important;
+      border-color: #243b66 !important;
+      color: #e2e8f0 !important;
+    }
+    .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, .dark strong {
+      color: #ffffff !important;
+    }
+    .dark .text-scout-navy,
+    .dark .text-slate-900 {
+      color: #ffffff !important;
+    }
+    .dark .text-scout-blue,
+    .dark .text-scout-cyan {
+      color: #38bdf8 !important;
+    }
+    .dark .text-slate-800 {
+      color: #f1f5f9 !important;
+    }
+    .dark .text-slate-700 {
+      color: #e2e8f0 !important;
+    }
+    .dark .text-slate-600 {
+      color: #cbd5e1 !important;
+    }
+    .dark .text-slate-500,
+    .dark .text-slate-400 {
+      color: #94a3b8 !important;
+    }
+    .dark .border-slate-100,
+    .dark .border-slate-200,
+    .dark .border-slate-300 {
+      border-color: #1e2e4a !important;
+    }
+    .dark a.bg-slate-50,
+    .dark a.bg-slate-100,
+    .dark a.bg-white,
+    .dark button.bg-slate-100,
+    .dark button.bg-white {
+      background-color: #162544 !important;
+      border-color: #243b66 !important;
+      color: #e2e8f0 !important;
+    }
+    .dark a.bg-slate-50:hover,
+    .dark a.bg-slate-100:hover,
+    .dark a.bg-white:hover,
+    .dark button.bg-slate-100:hover,
+    .dark button.bg-white:hover {
+      background-color: #1e3560 !important;
+      color: #ffffff !important;
+    }
+    .dark .filter-btn-b:not(.active) {
+      background-color: #162544 !important;
+      border-color: #243b66 !important;
+      color: #e2e8f0 !important;
+    }
+    .dark .filter-btn-b.active {
+      background-color: #009BE0 !important;
+      color: #ffffff !important;
+      border-color: #009BE0 !important;
+    }
+  </style>
+</head>
+<body class="bg-[#F8F9FA] text-slate-800 antialiased selection:bg-scout-blue selection:text-white">
+
+  
+  <!-- TOP OFFICIAL SKAUT STATUS BAR -->
+  <div class="bg-scout-navy text-slate-200 text-xs py-2 px-4 border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2 text-center sm:text-left">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold text-xs border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Běží schůzky 2026/2027
+        </span>
+        <span class="text-xs sm:text-sm">Schůzky: <strong>Středa &amp; Čtvrtek 16:00 – 18:00</strong> na Valše</span>
+      </div>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="index.html#terminovnik" class="hover:text-scout-cyan transition-colors flex items-center gap-1.5">
+          <i class="fa-regular fa-calendar-check text-yellow-400"></i> Termínovník akcí
+        </a>
+        <span class="text-white/20">|</span>
+        <a href="https://vaveha.cz" target="_blank" class="hover:text-white transition-colors flex items-center gap-1">
+          <span>4. středisko VAVÉHA ČB</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- LOGO & BRAND -->
+        <a href="index.html#" class="flex items-center gap-3.5 group">
+          <div class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl bg-slate-100 p-1 flex items-center justify-center group-hover:bg-slate-200 transition-colors shrink-0">
+            <img src="logo_emblem.png" alt="11. oddíl vodních skautů" class="h-full w-full object-contain filter drop-shadow-xs">
+          </div>
+          <div>
+            <span class="block text-xl font-bold tracking-tight text-scout-navy font-heading">11. oddíl vodních skautů</span>
+            <span class="block text-xs font-semibold text-scout-blue">České Budějovice • Valcha</span>
+          </div>
+        </a>
+
+        <!-- DESKTOP MENU -->
+        <nav class="hidden lg:flex items-center gap-5 text-sm font-semibold text-slate-700">
+          <a href="index.html#pro-rodice" class="hover:text-scout-blue transition-colors flex items-center gap-1.5 font-bold text-amber-700">
+            <i class="fa-solid fa-heart-pulse text-amber-500 text-xs"></i> Pro rodiče
+          </a>
+          <a href="index.html#oddil" class="hover:text-scout-blue transition-colors">O oddílu</a>
+          <a href="index.html#paluby" class="hover:text-scout-blue transition-colors">Naše paluby</a>
+          <a href="index.html#terminovnik" class="hover:text-scout-blue transition-colors">Termínovník</a>
+          <a href="index.html#aktuality" class="hover:text-scout-blue transition-colors">Aktuality</a>
+          <a href="#" class="text-scout-blue font-bold border-b-2 border-scout-blue pb-0.5 transition-colors flex items-center gap-1">
+            <i class="fa-solid fa-users text-xs"></i> Vedení oddílu
+          </a>
+          <a href="index.html#lodenice" class="hover:text-scout-blue transition-colors">Valcha</a>
+          <a href="index.html#kontakty" class="hover:text-scout-blue transition-colors">Kontakty</a>
+        </nav>
+
+        <!-- CTA BUTTON & THEME TOGGLE -->
+        <div class="hidden sm:flex items-center gap-2.5">
+          <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-yellow-400 dark:hover:bg-slate-700 transition-colors cursor-pointer flex items-center justify-center" title="Přepnout tmavý / světlý režim" aria-label="Přepnout režim">
+            <i class="fa-solid fa-moon text-sm text-slate-800 theme-toggle-icon"></i>
+          </button>
+          <a href="index.html#nabor" class="px-5 py-2.5 rounded-lg text-sm font-bold bg-scout-blue text-white hover:bg-scout-navy shadow-sm transition-all flex items-center gap-2">
+            <i class="fa-solid fa-user-plus text-xs"></i>
+            <span>Nábor nových členů</span>
+          </a>
+        </div>
+
+        <!-- HAMBURGER & THEME BUTTON -->
+        <div class="flex items-center gap-2 lg:hidden">
+          <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white hover:bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-yellow-400 dark:hover:bg-slate-700 cursor-pointer" title="Přepnout režim" aria-label="Přepnout režim">
+            <i class="fa-solid fa-moon text-xs text-slate-800 theme-toggle-icon"></i>
+          </button>
+          <button id="mobileMenuBtnB" class="p-2 text-slate-700 dark:text-slate-200 hover:text-scout-blue focus:outline-none" aria-label="Menu">
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU DRAWER -->
+    <div id="mobileMenuB" class="hidden lg:hidden bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-4 space-y-2">
+      <a href="index.html#pro-rodice" class="block px-3 py-2 rounded-lg font-bold text-amber-800 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 flex items-center gap-2">
+        <i class="fa-solid fa-heart-pulse text-amber-600"></i> Pro rodiče (Rozpis schůzek & fotky)
+      </a>
+      <a href="index.html#oddil" class="block px-3 py-2 rounded-lg font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800">O 11. oddílu</a>
+      <a href="index.html#paluby" class="block px-3 py-2 rounded-lg font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800">Naše 3 paluby (vlčata, skauti, roveři)</a>
+      <a href="index.html#terminovnik" class="block px-3 py-2 rounded-lg font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800">Termínovník akcí & výprav</a>
+      <a href="index.html#aktuality" class="block px-3 py-2 rounded-lg font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800">Aktuality z oddílu</a>
+      <a href="vedeni.html" class="block px-3 py-2 rounded-lg font-bold text-scout-blue hover:bg-slate-200 dark:hover:bg-slate-800">Vedení oddílu (34 vedoucích)</a>
+      <a href="index.html#lodenice" class="block px-3 py-2 rounded-lg font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800">Základna Valcha</a>
+      <a href="index.html#kontakty" class="block px-3 py-2 rounded-lg font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800">Kontakty</a>
+      <div class="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between px-1">
+        <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Režim zobrazení:</span>
+        <button onclick="toggleTheme()" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 text-slate-800 dark:text-yellow-300 font-bold text-xs border border-slate-200 dark:border-slate-700 cursor-pointer">
+          <i class="fa-solid fa-moon text-xs text-slate-800 theme-toggle-icon"></i>
+          <span class="theme-toggle-text">Tmavý režim</span>
+        </button>
+      </div>
+      <div class="pt-2">
+        <a href="index.html#nabor" class="block text-center py-2.5 rounded-lg font-bold bg-scout-blue text-white">Nábor nových členů</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- PAGE HEADER -->
+  <section class="bg-scout-sand border-b border-slate-200 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto space-y-3">
+      
+      <!-- DROBEČKOVÁ NAVIGACE / NÁVRAT -->
+      <div class="flex items-center justify-between flex-wrap gap-2 pb-2 border-b border-slate-300/80 text-xs">
+        <a href="index.html" class="inline-flex items-center gap-1.5 font-bold text-scout-blue hover:text-scout-navy transition-colors">
+          <i class="fa-solid fa-arrow-left text-[11px]"></i>
+          <span>Zpět na hlavní stránku oddílu</span>
+        </a>
+        <span class="text-slate-500">Podstránka webu • Varianta B</span>
+      </div>
+
+      <div class="text-center pt-1 space-y-2">
+        <span class="text-scout-blue font-bold text-xs uppercase tracking-wider">Tým vedoucích</span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-scout-navy font-heading">
+          Vedení 11. oddílu, garanti schůzek a lodivodi
+        </h1>
+        <p class="text-slate-600 text-sm max-w-2xl mx-auto">
+          Strukturovaný přehled všech 34 dospělých a roverů, kteří se podílejí na přípravě programu pro vlčata a skauty Jedenáctky.
+        </p>
+      </div>
+
+      <!-- FILTERS -->
+      <div class="pt-4 flex flex-wrap justify-center gap-2">
+        <button onclick="filterLeadersB('all')" class="filter-btn-b active px-4 py-2 rounded-lg text-xs font-bold bg-scout-navy text-white" data-filter="all">Všichni (34)</button>
+        <button onclick="filterLeadersB('vlcata')" class="filter-btn-b px-4 py-2 rounded-lg text-xs font-bold bg-white text-slate-700 border border-slate-300" data-filter="vlcata">Toulavá smečka (vlčata)</button>
+        <button onclick="filterLeadersB('skauti')" class="filter-btn-b px-4 py-2 rounded-lg text-xs font-bold bg-white text-slate-700 border border-slate-300" data-filter="skauti">Bárka (skauti)</button>
+        <button onclick="filterLeadersB('vedeni')" class="filter-btn-b px-4 py-2 rounded-lg text-xs font-bold bg-white text-slate-700 border border-slate-300" data-filter="vedeni">Vůdcové oddílu</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERS GRID -->
+  <main class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="leadersGridB">
+      
+        <div class="leader-card-b vedeni bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_1.jpg" alt="Martin Hájek" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-scout-navy text-white">
+                  Vedení oddílu
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Hopík</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Martin Hájek</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">kapitán oddílu</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> vedení oddílu, přípravu a organizaci výprav, vícedenních akcí a táborů</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> kapitánská zkouška, vůdcovská zkouška, zdravotník zotavovacích akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420733238774" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 733 238 774</a> <a href="mailto:hopik@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> hopik@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_2.jpg" alt="David Hacker" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Knedlík</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">David Hacker</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">důstojník</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> přípravu a organizaci vlčáckých výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška, zdravotník zotavovacích akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420604458758" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 604 458 758</a> <a href="mailto:knedlik@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> knedlik@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_3.jpg" alt="Jáchym Řehounek" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Čáp</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Jáchym Řehounek</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">garant čtvrteční schůzky</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> garantování čtvrteční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420732405827" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 732 405 827</a> <a href="mailto:cap@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> cap@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_4.jpg" alt="Matěj Bajgar" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Myšák</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Matěj Bajgar</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">garant středeční schůzky</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> garantování středeční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420778019042" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 778 019 042</a> <a href="mailto:matejb@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> matejb@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_5.jpg" alt="Jan Bartík" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Kraken</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Jan Bartík</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> přípravu a organizaci vlčáckých výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> vůdcovská zkouška, zdravotník zotavovacích akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420702225839" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 702 225 839</a> <a href="mailto:kraken@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> kraken@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_6.jpg" alt="Vít Sattran" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Sponzor</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Vít Sattran</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> čtvrteční schůzku, přípravu a organizaci vlčáckých výprav a vícedenních akcí, focení akcí, když zrovna nezapomene foťák</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420735138332" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 735 138 332</a> <a href="mailto:sponzor@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> sponzor@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_7.jpg" alt="Leontýna Maurerová" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Rusalka</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Leontýna Maurerová</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> přípravu a organizaci vlčáckých výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> vůdcovská zkouška, zdravotník zotavovacích akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420770699970" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 770 699 970</a> <a href="mailto:rusalka@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> rusalka@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_8.jpg" alt="Hugo Bajgar" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Achilles</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Hugo Bajgar</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> středeční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420776852633" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 776 852 633</a> <a href="mailto:hugo@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> hugo@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_9.jpg" alt="Christián Maurer" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Sisi</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Christián Maurer</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> čtvrteční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420770699971" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 770 699 971</a> <a href="mailto:sisi@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> sisi@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_10.jpg" alt="Šimon Rucki" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Bobr</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Šimon Rucki</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> čtvrteční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420739845059" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 739 845 059</a> <a href="mailto:simon@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> simon@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_11.jpg" alt="Filip Vácha" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Medůza</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Filip Vácha</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> středeční schůzky, přípravu a organizaci vlčáckých výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420734269064" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 734 269 064</a> <a href="mailto:meduza@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> meduza@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_12.jpg" alt="Ondřej Čapek" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Tulák</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Ondřej Čapek</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> přípravu a organizaci vlčáckých výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420723985680" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 723 985 680</a> <a href="mailto:tulak@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> tulak@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_13.jpg" alt="Richard Kašpar" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Ríša</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Richard Kašpar</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> přípravu a organizaci vlčáckých výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420730951605" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 730 951 605</a> <a href="mailto:risa@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> risa@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_14.jpg" alt="Adam Klabouch" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Trasher</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Adam Klabouch</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> rady nad zlato ve vedení oddílu, pomoc při nesnázích</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> vůdcovská zkouška, zdravotník zotavovacích akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420777175430" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 777 175 430</a> <a href="mailto:adam@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> adam@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_15.jpg" alt="Matěj Jerhot" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Jerhi</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Matěj Jerhot</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> přípravu a organizaci vlčáckých výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420737156635" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 737 156 635</a> <a href="mailto:ctenar@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> ctenar@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b vlcata bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_16.jpg" alt="Václav Ludvík" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-amber-100 text-amber-900 border-amber-300">
+                  Toulavá smečka (vlčata)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Venda</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Václav Ludvík</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> Kalkulace neúspěchu zaručena</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> je mu hodně</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="mailto:venda@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> venda@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_17.jpg" alt="Vít Veltrubský" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Vodník</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Vít Veltrubský</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">1/2 důstojníka bárky</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> oblastní ředitel</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> chod skautské častí oddílu, supervizi schůzek, přípravu a organizaci skautských výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420724687854" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 724 687 854</a> <a href="mailto:vodnik@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> vodnik@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_18.jpg" alt="František Bajgar" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Škarpák</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">František Bajgar</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">1/2. důstojníka bárky</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> food quantity control</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> chod skautské častí oddílu, přípravu a organizaci skautských výprav a vícedenních akcí, dojídání zbytků</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> škola života</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420777038647" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 777 038 647</a> <a href="mailto:skarpak@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> skarpak@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_19.jpg" alt="Max Rosenthaler" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Werran</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Max Rosenthaler</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">garant středeční schůzky</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> garantování středeční schůzky, přípravu a organizaci skautských výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420728729518" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 728 729 518</a> <a href="mailto:werran@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> werran@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_20.jpg" alt="František Kratochvíl" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Fanda krátký</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">František Kratochvíl</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">garant čtvrteční schůzky</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> garantování čtvrteční schůzky, přípravu a organizaci skautských výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420722320570" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 722 320 570</a> <a href="mailto:franta@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> franta@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_21.jpg" alt="Ondřej Ošmera" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Sekáč</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Ondřej Ošmera</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> čtvrteční schůzky, přípravu a organizaci skautských výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420703978629" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 703 978 629</a> <a href="mailto:sekac@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> sekac@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_22.jpg" alt="Jakub Nejedlý" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Střípek</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Jakub Nejedlý</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> středeční schůzky, přípravu a organizaci skautských výprav a vícedenních akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420792338518" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 792 338 518</a> <a href="mailto:stripek@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> stripek@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_23.jpg" alt="David Ujčík" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Davído</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">David Ujčík</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> výtvarný ředitel</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> přípravu a organizaci skautských výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška, škola života</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420605380116" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 605 380 116</a> <a href="mailto:davido@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> davido@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_24.jpg" alt="Valdemar Vokálek" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Valda</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Valdemar Vokálek</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> stínový ministr</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> úplně levá ruka důstojníka Bárky, moudrost na dálku, ucházející reprezentace navenek,</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška, zdravotník zotavovacích akcí</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420606262434" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 606 262 434</a> <a href="mailto:valda@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> valda@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_25.jpg" alt="Antonín Malec" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Harry</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Antonín Malec</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420722058376" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 722 058 376</a> <a href="mailto:harry@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> harry@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_26.jpg" alt="Ondřej Polák" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Kecal</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Ondřej Polák</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="mailto:kecal@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> kecal@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_27.jpg" alt="Vítězslav Černý" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Vítek</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Vítězslav Černý</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">Lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> přípravu a organizaci skautských výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> škola života</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420732908852" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 732 908 852</a> <a href="mailto:vita@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> vita@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_28.jpg" alt="Jaroslav Jílek" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Pampárek</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Jaroslav Jílek</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> přípravu a organizaci skautských výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška (snad brzy)</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420734269022" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 734 269 022</a> <a href="mailto:pamparek@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> pamparek@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_29.jpg" alt="Kryštof Klabouch" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Vokoun</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Kryštof Klabouch</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> generální ředitel</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> rady nad zlato, přípravu a organizaci skautských výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška, škola života</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420773215613" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 773 215 613</a> <a href="mailto:vokoun@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> vokoun@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_30.jpg" alt="Mag. iur. Christopher Alexander De La Cruz" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Šaman</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Mag. iur. Christopher Alexander De La Cruz</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">Lodivod • Manažer tabulkových systémů</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> manažer tabulkových systémů</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> SkautIS odborník, pomocná ruka k nezaplacení</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška, škola života</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420721861066" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 721 861 066</a> <a href="mailto:saman@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> saman@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_31.jpg" alt="Michal Čutka" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Majkl</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Michal Čutka</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> spolu-garant</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> středně použitelný člen, přípravu a organizaci skautských výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška, zdravotník zotavovacích akcí, škola života</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420720473882" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 720 473 882</a> <a href="mailto:michal.cutka@gmail.com" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> michal.cutka@gmail.com</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_32.jpg" alt="Ondřej Šustr" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Troll</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Ondřej Šustr</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> manažer pro dostatečný odpočinek</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> above average, přípravu a organizaci skautských výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška, zdravotník zotavovacích akcí, škola života</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420728965289" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 728 965 289</a> <a href="mailto:ondra@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> ondra@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_33.jpg" alt="Tomáš Tříska" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Tomášek</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">Tomáš Tříska</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> zdravotník bez dekretu a schopností</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> obě ruce důstojníka skautů, vaření mňaminek, přípravu a organizaci skautských výprav a vícedenních akcí</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška, škola života</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420607291025" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 607 291 025</a> <a href="mailto:tom@jedenactka.eu" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-envelope text-scout-blue"></i> tom@jedenactka.eu</a>
+          </div>
+        </div>
+        
+        <div class="leader-card-b skauti bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:border-scout-blue hover:shadow transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-3 mb-3">
+              <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200 bg-slate-100">
+                <img src="avatars/avatar_34.jpg" alt="MUDr. Jaromír Pokorný" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border mb-1 bg-sky-100 text-scout-blue border-sky-300">
+                  Bárka (skauti)
+                </span>
+                <h3 class="text-base font-bold text-scout-navy font-heading leading-tight">Dráček</h3>
+                <p class="text-xs font-semibold text-slate-700 mt-0.5">MUDr. Jaromír Pokorný</p>
+                <p class="text-[11px] font-medium text-scout-blue mt-0.5">lodivod</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Funkce:</strong> neuvedeno</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Má na starosti:</strong> „kdyby někdy někdo něco potřeboval … že si to tam muže najít“</div><div class="text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200 mt-1"><strong>Kvalifikace:</strong> čekatelská zkouška, vysoká škola života</div>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+            <a href="tel:+420724302496" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"><i class="fa-solid fa-phone text-scout-blue"></i> 724 302 496</a> 
+          </div>
+        </div>
+        
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-scout-navy text-slate-300 text-xs py-8 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <img src="logo_emblem.png" alt="11. oddíl vodních skautů" class="h-7 w-auto object-contain brightness-110">
+        <span class="font-bold text-white">11. oddíl vodních skautů České Budějovice</span>
+      </div>
+      <div class="text-slate-400 text-center sm:text-right flex flex-col sm:flex-row items-center justify-end gap-1.5 sm:gap-2">
+        <span class="text-slate-300">Publikováno: 06.10.2026 15:32</span>
+        <span class="hidden sm:inline text-slate-600">•</span>
+        <span>Registrováno u Junák – český skaut, 4. středisko VAVÉHA České Budějovice.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuBtnB = document.getElementById('mobileMenuBtnB');
+    const mobileMenuB = document.getElementById('mobileMenuB');
+    if (mobileMenuBtnB && mobileMenuB) {
+      mobileMenuBtnB.addEventListener('click', () => {
+        mobileMenuB.classList.toggle('hidden');
+      });
+      mobileMenuB.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenuB.classList.add('hidden');
+        });
+      });
+    }
+
+    function filterLeadersB(cat) {
+      const cards = document.querySelectorAll('.leader-card-b');
+      const btns = document.querySelectorAll('.filter-btn-b');
+
+      btns.forEach(btn => {
+        if (btn.getAttribute('data-filter') === cat) {
+          btn.className = "filter-btn-b active px-4 py-2 rounded-lg text-xs font-bold bg-scout-navy text-white";
+        } else {
+          btn.className = "filter-btn-b px-4 py-2 rounded-lg text-xs font-bold bg-white text-slate-700 border border-slate-300";
+        }
+      });
+
+      cards.forEach(card => {
+        if (cat === 'all') {
+          card.classList.remove('hidden');
+        } else if (card.classList.contains(cat)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Přepínač tmavého / světlého režimu s localStorage
+    function toggleTheme() {
+      document.documentElement.classList.add('theme-transition');
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.theme = isDark ? 'dark' : 'light';
+      updateThemeIcons();
+      setTimeout(() => {
+        document.documentElement.classList.remove('theme-transition');
+      }, 300);
+    }
+
+    function updateThemeIcons() {
+      const isDark = document.documentElement.classList.contains('dark');
+      document.querySelectorAll('.theme-toggle-icon').forEach(icon => {
+        if (isDark) {
+          icon.className = 'fa-solid fa-sun text-yellow-400 theme-toggle-icon';
+        } else {
+          icon.className = 'fa-solid fa-moon text-slate-800 theme-toggle-icon';
+        }
+      });
+      document.querySelectorAll('.theme-toggle-text').forEach(t => {
+        t.textContent = isDark ? 'Světlý režim' : 'Tmavý režim';
+      });
+    }
+    updateThemeIcons();
+  </script>
+</body>
+</html>
