@@ -231,10 +231,13 @@ function jedenactka_setup() {
     add_theme_support('post-thumbnails');
     add_theme_support('responsive-embeds');
     add_theme_support('align-wide');
+}
+add_action('after_setup_theme', 'jedenactka_setup');
 
-    // Automatické vytvoření stránky 'vedeni' při aktivaci šablony, pokud ještě neexistuje
+// Automatické zajištění existence stránky 'vedeni' v databázi WordPressu
+function jedenactka_ensure_vedeni_page() {
     if (!get_page_by_path('vedeni')) {
-        wp_insert_post(array(
+        $page_id = wp_insert_post(array(
             'post_title'     => 'Vedení oddílu',
             'post_name'      => 'vedeni',
             'post_status'    => 'publish',
@@ -242,20 +245,43 @@ function jedenactka_setup() {
             'page_template'  => 'page-vedeni.php',
             'comment_status' => 'closed'
         ));
+        if ($page_id && !is_wp_error($page_id)) {
+            delete_option('rewrite_rules');
+        }
     }
 }
-add_action('after_switch_theme', 'jedenactka_setup');
+add_action('init', 'jedenactka_ensure_vedeni_page');
 
-// Směrování pro podstránku vedení
+// Garantované směrování pro podstránku vedení (funguje ihned bez ohledu na databázi a nastavení trvalých odkazů)
 add_filter('template_include', function($template) {
-    if (is_page('vedeni') || (isset($_GET['stranka']) && $_GET['stranka'] === 'vedeni')) {
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+    $path = trim(parse_url($request_uri, PHP_URL_PATH) ?? '', '/');
+    $home_path = trim(parse_url(home_url(), PHP_URL_PATH) ?? '', '/');
+    if (!empty($home_path) && strpos($path, $home_path) === 0) {
+        $path = trim(substr($path, strlen($home_path)), '/');
+    }
+
+    $is_vedeni = ($path === 'vedeni' || 
+                  is_page('vedeni') || 
+                  (isset($_GET['stranka']) && $_GET['stranka'] === 'vedeni') || 
+                  (isset($_GET['page']) && $_GET['page'] === 'vedeni') ||
+                  (isset($_GET['p']) && $_GET['p'] === 'vedeni'));
+
+    if ($is_vedeni) {
         $vedeni_template = locate_template(array('page-vedeni.php'));
         if (!empty($vedeni_template)) {
+            status_header(200);
+            global $wp_query;
+            if ($wp_query) {
+                $wp_query->is_404 = false;
+                $wp_query->is_page = true;
+                $wp_query->is_singular = true;
+            }
             return $vedeni_template;
         }
     }
     return $template;
-});
+}, 99);
 """
     with open(os.path.join(THEME_DIR, "functions.php"), "w", encoding="utf-8") as f:
         f.write(functions_php_content)
@@ -287,6 +313,11 @@ add_filter('template_include', function($template) {
     with open(os.path.join(THEME_DIR, "search.php"), "w", encoding="utf-8") as f:
         f.write(wp_search)
 
+    # 7c. Vytvoření šablony chybové stránky 404.php
+    wp_404 = generate_wp_404_template(vedeni_html)
+    with open(os.path.join(THEME_DIR, "404.php"), "w", encoding="utf-8") as f:
+        f.write(wp_404)
+
     # 8. Vytvoření šablony single.php (pro jednotlivé články/aktuality)
     with open(os.path.join(THEME_DIR, "single.php"), "w", encoding="utf-8") as f:
         f.write(wp_page)
@@ -298,6 +329,8 @@ add_filter('template_include', function($template) {
  */
 if (is_front_page()) {
     include get_template_directory() . '/front-page.php';
+} elseif (is_404()) {
+    include get_template_directory() . '/404.php';
 } else {
     include get_template_directory() . '/page.php';
 }
@@ -405,13 +438,15 @@ def generate_wp_page_template(vedeni_html):
     <article class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200/80 dark:border-slate-800">
       <header class="mb-8 border-b border-slate-100 dark:border-slate-800 pb-6">
         <h1 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-heading tracking-tight">
-          <?php the_title(); ?>
+          <?php if ( is_404() ) { echo 'Stránka nenalezena (404)'; } else { the_title(); } ?>
         </h1>
       </header>
 
       <div class="entry-content text-slate-700 dark:text-slate-200 leading-relaxed">
         <?php
-        if ( have_posts() ) :
+        if ( is_404() ) :
+            echo '<p>Tato stránka nebyla nalezena. Přejděte prosím na <a href="' . esc_url( home_url( '/' ) ) . '">hlavní stránku</a> nebo na stránku <a href="' . esc_url( home_url( '/vedeni/' ) ) . '">vedení oddílu</a>.</p>';
+        elseif ( have_posts() ) :
             while ( have_posts() ) : the_post();
                 the_content();
             endwhile;
@@ -543,6 +578,51 @@ def generate_wp_search_template(vedeni_html):
     full_page = header_raw + "\n" + body_content + "\n" + footer_raw
     return adapt_html_to_wp(full_page, is_subpage=True)
 
+def generate_wp_404_template(vedeni_html):
+    """
+    Vygeneruje WordPress 404.php šablonu pro neexistující adresy.
+    """
+    h_end = vedeni_html.find('</header>') + len('</header>')
+    f_start = vedeni_html.find('<!-- FOOTER -->')
+    if f_start == -1:
+        f_start = vedeni_html.find('<footer')
+
+    header_raw = vedeni_html[:h_end]
+    footer_raw = vedeni_html[f_start:]
+
+    if '</style>' in header_raw:
+        header_raw = header_raw.replace('</style>', WP_CONTENT_STYLES + '\n  </style>')
+
+    body_content = """
+  <!-- HLAVNÍ OBSAH CHYBY 404 -->
+  <main class="min-h-[60vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto text-center">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-12 shadow-sm border border-slate-200/80 dark:border-slate-800 w-full">
+      <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-sky-50 dark:bg-sky-950/60 border border-sky-100 dark:border-sky-900/60 flex items-center justify-center text-brand-sky text-2xl">
+        <i class="fa-solid fa-compass"></i>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-heading tracking-tight mb-4">
+        Stránka nenalezena
+      </h1>
+      <p class="text-base text-slate-600 dark:text-slate-300 mb-8 max-w-md mx-auto">
+        Požadovaná adresa na webu neexistuje nebo byla přesunuta.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="<?php echo home_url('/'); ?>" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-brand-gold to-brand-goldHover text-brand-navyDark shadow-md hover:scale-105 transition-all">
+          <i class="fa-solid fa-house"></i>
+          <span>Hlavní stránka oddílu</span>
+        </a>
+        <a href="<?php echo home_url('/vedeni/'); ?>" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 transition-all">
+          <i class="fa-solid fa-users"></i>
+          <span>Vedení a kontakty</span>
+        </a>
+      </div>
+    </div>
+  </main>
+"""
+    full_page = header_raw + "\n" + body_content + "\n" + footer_raw
+    return adapt_html_to_wp(full_page, is_subpage=True)
+
 if __name__ == "__main__":
     target = sys.argv[1] if len(sys.argv) > 1 else "verzeA"
     prepare_wp_theme(target)
+
