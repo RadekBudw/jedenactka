@@ -6,11 +6,11 @@
   <title>11. oddíl vodních skautů České Budějovice | Moderní flotila</title>
   <meta name="description" content="Oficiální moderní prezentace 11. chlapeckého oddílu vodních skautů v Českých Budějovicích. Skauting, pramice, kanoe, dobrodružství pro kluky od 6 let.">
   <!-- NEVIDITELNÉ METADATA VERZOVÁNÍ -->
-  <meta name="app-version" content="1.2.12">
-  <meta name="build-timestamp" content="2026-10-06 18:06:37">
-  <meta name="git-commit" content="b1443b1">
+  <meta name="app-version" content="1.2.13">
+  <meta name="build-timestamp" content="2026-10-06 18:34:01">
+  <meta name="git-commit" content="066586e">
   <meta name="generator" content="Antigravity / 11. oddíl vodních skautů ČB">
-  <!-- JEDENACTKA_VERSION: ver=1.2.12 git=b1443b1 time=2026-10-06 18:06:37 -->
+  <!-- JEDENACTKA_VERSION: ver=1.2.13 git=066586e time=2026-10-06 18:34:01 -->
   
   <script>
     if (localStorage.theme === 'dark') {
@@ -533,7 +533,7 @@
             <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-yellow-400/30 text-[11px] font-bold text-yellow-300 shadow-md">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Momentky z oddílu</span>
+                <span id="heroSourceBadge">Momentky z oddílu</span>
               </span>
               <button onclick="event.stopPropagation(); handleHeroClick()" type="button" class="px-3 py-1.5 rounded-xl bg-slate-950/85 hover:bg-slate-900 text-yellow-400 border border-yellow-400/50 hover:border-yellow-400 text-xs font-bold transition-all shadow-md cursor-pointer flex items-center gap-1.5 active:scale-95" title="Náhodně změnit fotografii v záhlaví">
                 <i class="fa-solid fa-shuffle"></i>
@@ -2012,9 +2012,9 @@
         <span class="text-slate-300 font-bold">11. oddíl vodních skautů České Budějovice</span>
       </div>
       <p class="text-slate-500 text-center sm:text-right flex flex-col sm:flex-row items-center justify-end gap-1.5 sm:gap-2">
-        <span class="text-slate-400">Verze: 1.2.12 (b1443b1)</span>
+        <span class="text-slate-400">Verze: 1.2.13 (066586e)</span>
         <span class="hidden sm:inline text-slate-700">•</span>
-        <span class="text-slate-400">Aktualizováno: 06.10.2026 18:06</span>
+        <span class="text-slate-400">Aktualizováno: 06.10.2026 18:34</span>
         <span class="hidden sm:inline text-slate-700">•</span>
         <span>Registrováno u Junák – český skaut, 4. středisko VAVÉHA České Budějovice.</span>
       </p>
@@ -2176,9 +2176,10 @@
       }, 4000);
     }
 
-    // Hero záhlaví - náhodné a automatické střídání fotografií
-    // Fotografie čerpané z oddílové fotogalerie Zonerama za poslední rok
-    const heroPhotos = [
+    // =========================================================================
+    // DYNAMICKÉ NAČÍTÁNÍ FOTOGRAFIÍ ZE ZONERAMA (POSLEDNÍ 2 ROKY) S LOKÁLNÍM FALLBACKEM
+    // =========================================================================
+    const heroPhotosLocal = [
       { src: "zonerama_2.jpg", tag: "Společná voda 2026", sub: "Sjíždění šlajsny na kánoi", title: "Vodácká dobrodružství & peřeje na řece" },
       { src: "zonerama_1.jpg", tag: "Slalomový kanál 2026", sub: "České Vrbné • divoká voda", title: "Zázemí na vodě & trénink pádlování a stability" },
       { src: "zonerama_3.jpg", tag: "3 Jezy Praha 2025", sub: "Závod Napříč Prahou", title: "Reprezentace posádky 11. oddílu na prestižním závodě" },
@@ -2188,29 +2189,102 @@
       { src: "zonerama_6.jpg", tag: "Kajaky v peřejích", sub: "České Vrbné", title: "Slalomový trénink mezi brankami na divoké vodě" }
     ];
 
-    let currentHeroIdx = Math.floor(Math.random() * heroPhotos.length);
+    // Startovní pool fotografií ze Zoneramy za poslední 2 roky (2024–2026)
+    const initialZoneramaPhotos = [{"id": 673608923, "album_id": "16719506", "album_title": "Schůzky", "tag": "Schůzky oddílu", "sub": "Život na Valši", "title": "Pravidelný celoroční program družin v klubovně na Valši", "year": "2025/2026", "src": "https://eu.zonerama.com/photos/673608923_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/16719506/673608923"}, {"id": 663923417, "album_id": "15758185", "album_title": "Tábor Labská Stráň 11. - 25. 7. 2026", "tag": "Letní tábor 2026", "sub": "Labská Stráň", "title": "Čtrnáct dní nezapomenutelných zážitků, lezení a výzev v přírodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/663923417_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15758185/663923417"}, {"id": 663923406, "album_id": "15758185", "album_title": "Tábor Labská Stráň 11. - 25. 7. 2026", "tag": "Letní tábor 2026", "sub": "Labská Stráň", "title": "Čtrnáct dní nezapomenutelných zážitků, lezení a výzev v přírodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/663923406_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15758185/663923406"}, {"id": 648696810, "album_id": "15758185", "album_title": "Tábor Labská Stráň 11. - 25. 7. 2026", "tag": "Letní tábor 2026", "sub": "Labská Stráň", "title": "Čtrnáct dní nezapomenutelných zážitků, lezení a výzev v přírodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/648696810_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15758185/648696810"}, {"id": 648696790, "album_id": "15758185", "album_title": "Tábor Labská Stráň 11. - 25. 7. 2026", "tag": "Letní tábor 2026", "sub": "Labská Stráň", "title": "Čtrnáct dní nezapomenutelných zážitků, lezení a výzev v přírodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/648696790_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15758185/648696790"}, {"id": 633496782, "album_id": "15582766", "album_title": "Společná voda 12. - 14. 6. 2026", "tag": "Společná voda 2026", "sub": "Vodácká výprava", "title": "Sjíždění řeky na kánoích, peřeje a vodácká dobrodružství", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/633496782_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15582766/633496782"}, {"id": 633496771, "album_id": "15582766", "album_title": "Společná voda 12. - 14. 6. 2026", "tag": "Společná voda 2026", "sub": "Vodácká výprava", "title": "Sjíždění řeky na kánoích, peřeje a vodácká dobrodružství", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/633496771_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15582766/633496771"}, {"id": 633496763, "album_id": "15582766", "album_title": "Společná voda 12. - 14. 6. 2026", "tag": "Společná voda 2026", "sub": "Vodácká výprava", "title": "Sjíždění řeky na kánoích, peřeje a vodácká dobrodružství", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/633496763_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15582766/633496763"}, {"id": 633496788, "album_id": "15582766", "album_title": "Společná voda 12. - 14. 6. 2026", "tag": "Společná voda 2026", "sub": "Vodácká výprava", "title": "Sjíždění řeky na kánoích, peřeje a vodácká dobrodružství", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/633496788_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15582766/633496788"}, {"id": 622078363, "album_id": "15374156", "album_title": "Kanál 17.5.2026", "tag": "Slalomový kanál 2026", "sub": "České Vrbné • divoká voda", "title": "Trénink pádlování, stability a peřejí na slalomové trati", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/622078363_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15374156/622078363"}, {"id": 622078325, "album_id": "15374156", "album_title": "Kanál 17.5.2026", "tag": "Slalomový kanál 2026", "sub": "České Vrbné • divoká voda", "title": "Trénink pádlování, stability a peřejí na slalomové trati", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/622078325_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15374156/622078325"}, {"id": 622077771, "album_id": "15374156", "album_title": "Kanál 17.5.2026", "tag": "Slalomový kanál 2026", "sub": "České Vrbné • divoká voda", "title": "Trénink pádlování, stability a peřejí na slalomové trati", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/622077771_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15374156/622077771"}, {"id": 622077770, "album_id": "15374156", "album_title": "Kanál 17.5.2026", "tag": "Slalomový kanál 2026", "sub": "České Vrbné • divoká voda", "title": "Trénink pádlování, stability a peřejí na slalomové trati", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/622077770_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/15374156/622077770"}, {"id": 588905967, "album_id": "14432662", "album_title": "Vánoce na Švýcaráku 27.-29.12.2025", "tag": "Vánoce na Švýcaráku", "sub": "Zimní výprava", "title": "Tradiční vánoční setkání oddílu na srubové základně Švýcarák", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/588905967_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14432662/588905967"}, {"id": 588905957, "album_id": "14432662", "album_title": "Vánoce na Švýcaráku 27.-29.12.2025", "tag": "Vánoce na Švýcaráku", "sub": "Zimní výprava", "title": "Tradiční vánoční setkání oddílu na srubové základně Švýcarák", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/588905957_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14432662/588905957"}, {"id": 588905960, "album_id": "14432662", "album_title": "Vánoce na Švýcaráku 27.-29.12.2025", "tag": "Vánoce na Švýcaráku", "sub": "Zimní výprava", "title": "Tradiční vánoční setkání oddílu na srubové základně Švýcarák", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/588905960_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14432662/588905960"}, {"id": 588905978, "album_id": "14432662", "album_title": "Vánoce na Švýcaráku 27.-29.12.2025", "tag": "Vánoce na Švýcaráku", "sub": "Zimní výprava", "title": "Tradiční vánoční setkání oddílu na srubové základně Švýcarák", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/588905978_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14432662/588905978"}, {"id": 578837518, "album_id": "14180805", "album_title": "Výprava všech lidí na zemi 08.11.2025", "tag": "Podzimní výprava", "sub": "Výprava všech lidí na zemi", "title": "Společné dobrodružství a lesní hry v podzimní přírodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578837518_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180805/578837518"}, {"id": 578837504, "album_id": "14180805", "album_title": "Výprava všech lidí na zemi 08.11.2025", "tag": "Podzimní výprava", "sub": "Výprava všech lidí na zemi", "title": "Společné dobrodružství a lesní hry v podzimní přírodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578837504_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180805/578837504"}, {"id": 578837492, "album_id": "14180805", "album_title": "Výprava všech lidí na zemi 08.11.2025", "tag": "Podzimní výprava", "sub": "Výprava všech lidí na zemi", "title": "Společné dobrodružství a lesní hry v podzimní přírodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578837492_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180805/578837492"}, {"id": 578835269, "album_id": "14180744", "album_title": "Brigáda na Švýcaráku 20. - 21.09.2025", "tag": "Brigáda na Švýcaráku", "sub": "Pomoc základně", "title": "Příprava dřeva na zimu, tábornické dovednosti a údržba chaty", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578835269_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180744/578835269"}, {"id": 578835150, "album_id": "14180744", "album_title": "Brigáda na Švýcaráku 20. - 21.09.2025", "tag": "Brigáda na Švýcaráku", "sub": "Pomoc základně", "title": "Příprava dřeva na zimu, tábornické dovednosti a údržba chaty", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578835150_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180744/578835150"}, {"id": 578835133, "album_id": "14180744", "album_title": "Brigáda na Švýcaráku 20. - 21.09.2025", "tag": "Brigáda na Švýcaráku", "sub": "Pomoc základně", "title": "Příprava dřeva na zimu, tábornické dovednosti a údržba chaty", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578835133_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180744/578835133"}, {"id": 578835148, "album_id": "14180744", "album_title": "Brigáda na Švýcaráku 20. - 21.09.2025", "tag": "Brigáda na Švýcaráku", "sub": "Pomoc základně", "title": "Příprava dřeva na zimu, tábornické dovednosti a údržba chaty", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578835148_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180744/578835148"}, {"id": 578833574, "album_id": "14180722", "album_title": "3 Jezy 28.09.2025", "tag": "3 Jezy Praha", "sub": "Závod Napříč Prahou", "title": "Reprezentace posádky 11. oddílu na legendárním skautském závodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578833574_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180722/578833574"}, {"id": 578833577, "album_id": "14180722", "album_title": "3 Jezy 28.09.2025", "tag": "3 Jezy Praha", "sub": "Závod Napříč Prahou", "title": "Reprezentace posádky 11. oddílu na legendárním skautském závodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578833577_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180722/578833577"}, {"id": 578833613, "album_id": "14180722", "album_title": "3 Jezy 28.09.2025", "tag": "3 Jezy Praha", "sub": "Závod Napříč Prahou", "title": "Reprezentace posádky 11. oddílu na legendárním skautském závodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578833613_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180722/578833613"}, {"id": 578833750, "album_id": "14180722", "album_title": "3 Jezy 28.09.2025", "tag": "3 Jezy Praha", "sub": "Závod Napříč Prahou", "title": "Reprezentace posádky 11. oddílu na legendárním skautském závodě", "year": "2024/2025", "src": "https://eu.zonerama.com/photos/578833750_1200x800_16.jpg", "link": "https://eu.zonerama.com/11skautskyoddil/Photo/14180722/578833750"}];
+    let zoneramaPhotosPool = [...initialZoneramaPhotos];
+    const zoneramaJsonUrl = 'zonerama_latest_photos.json';
 
-    function renderHeroDots() {
-      const container = document.getElementById('heroDots');
-      if (!container) return;
-      container.innerHTML = heroPhotos.map((_, i) => `
-        <button onclick="event.stopPropagation(); setHeroPhoto(${i})" class="h-1.5 rounded-full transition-all cursor-pointer ${i === currentHeroIdx ? 'w-6 bg-yellow-400' : 'w-2 bg-white/30 hover:bg-white/60'}" title="Fotka ${i+1}"></button>
-      `).join('');
-    }
+    // Asynchronní načtení všech 269 fotografií ze Zoneramy na pozadí
+    fetch(zoneramaJsonUrl)
+      .then(response => {
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return response.json();
+      })
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          zoneramaPhotosPool = data;
+        }
+      })
+      .catch(() => {
+        // V případě selhání fetch pokračujeme se startovním poolem a lokálním fallbackem
+      });
 
-    function setHeroPhoto(idx) {
-      currentHeroIdx = idx;
-      applyHeroPhoto();
-      startHeroTimer();
+    let onlineFailures = 0;
+    const MAX_ONLINE_FAILS = 2;
+    let localHeroIdx = Math.floor(Math.random() * heroPhotosLocal.length);
+
+    function showLocalHeroPhoto() {
+      let newIdx = Math.floor(Math.random() * heroPhotosLocal.length);
+      while (newIdx === localHeroIdx && heroPhotosLocal.length > 1) {
+        newIdx = Math.floor(Math.random() * heroPhotosLocal.length);
+      }
+      localHeroIdx = newIdx;
+      const item = heroPhotosLocal[localHeroIdx];
+      updateHeroDOM(item.src, item.tag, item.sub, item.title, false);
     }
 
     function randomizeHeroPhoto() {
-      let newIdx = Math.floor(Math.random() * heroPhotos.length);
-      while (newIdx === currentHeroIdx && heroPhotos.length > 1) {
-        newIdx = Math.floor(Math.random() * heroPhotos.length);
+      // Pokud opakovaně selhalo načtení z internetu nebo je pool prázdný, cyklujeme lokální fotky
+      if (onlineFailures >= MAX_ONLINE_FAILS || zoneramaPhotosPool.length === 0) {
+        showLocalHeroPhoto();
+        return;
       }
-      currentHeroIdx = newIdx;
-      applyHeroPhoto();
+
+      // Vybrat náhodnou fotografii z online poolu Zonerama
+      const candidate = zoneramaPhotosPool[Math.floor(Math.random() * zoneramaPhotosPool.length)];
+
+      // Otestovat načtení fotky před zobrazením s časovým limitem (fallback při pomalém spojení či chybě)
+      const testImg = new Image();
+      let handled = false;
+
+      const timeoutTimer = setTimeout(() => {
+        if (!handled) {
+          handled = true;
+          onlineFailures++;
+          showLocalHeroPhoto();
+        }
+      }, 2500);
+
+      testImg.onload = () => {
+        if (handled) return;
+        handled = true;
+        clearTimeout(timeoutTimer);
+        onlineFailures = 0; // reset čítače chyb při úspěchu
+        updateHeroDOM(candidate.src, candidate.tag, candidate.sub, candidate.title, true);
+      };
+
+      testImg.onerror = () => {
+        if (handled) return;
+        handled = true;
+        clearTimeout(timeoutTimer);
+        onlineFailures++;
+        showLocalHeroPhoto();
+      };
+
+      testImg.src = candidate.src;
+    }
+
+    function updateHeroDOM(src, tag, sub, title, isOnline) {
+      const img = document.getElementById('heroImg');
+      const tagEl = document.getElementById('heroTag');
+      const subEl = document.getElementById('heroSub');
+      const titleEl = document.getElementById('heroTitle');
+      const badgeEl = document.getElementById('heroSourceBadge');
+
+      if (img) {
+        img.style.opacity = '0.2';
+        setTimeout(() => {
+          img.src = src;
+          img.alt = title || tag;
+          if (tagEl) tagEl.textContent = tag;
+          if (subEl) subEl.textContent = sub;
+          if (titleEl) titleEl.textContent = title;
+          if (badgeEl) {
+            badgeEl.textContent = isOnline ? 'Zonerama (2024–2026)' : 'Momentky z oddílu';
+          }
+          img.style.opacity = '1';
+        }, 200);
+      }
     }
 
     function handleHeroClick() {
@@ -2218,37 +2292,16 @@
       startHeroTimer();
     }
 
-    function applyHeroPhoto() {
-      const img = document.getElementById('heroImg');
-      const tag = document.getElementById('heroTag');
-      const sub = document.getElementById('heroSub');
-      const title = document.getElementById('heroTitle');
-
-      if (img) {
-        img.style.opacity = '0.2';
-        setTimeout(() => {
-          const item = heroPhotos[currentHeroIdx];
-          img.src = item.src;
-          img.alt = item.title;
-          if (tag) tag.textContent = item.tag;
-          if (sub) sub.textContent = item.sub;
-          if (title) title.textContent = item.title;
-          img.style.opacity = '1';
-          renderHeroDots();
-        }, 200);
-      }
-    }
-
     let heroTimer = null;
     function startHeroTimer() {
       if (heroTimer) clearInterval(heroTimer);
       heroTimer = setInterval(() => {
         randomizeHeroPhoto();
-      }, 5000);
+      }, 6000);
     }
 
-    // Spustit náhodnou fotku hned při načtení a zapnout rotaci
-    applyHeroPhoto();
+    // Spustit náhodnou fotku ze Zoneramy (nebo lokální fallback) ihned po načtení a zapnout rotaci
+    randomizeHeroPhoto();
     startHeroTimer();
 
     // Spustit náhodné fotky loděnice a zapnout rotaci

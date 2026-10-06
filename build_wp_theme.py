@@ -160,7 +160,7 @@ def prepare_wp_theme(source_dir="verzeA"):
         d_item = os.path.join(THEME_DIR, item)
         if os.path.isdir(s_item):
             shutil.copytree(s_item, d_item)
-        elif item.lower().endswith(('.jpg', '.jpeg', '.png', '.svg', '.webp', '.gif', '.ico')):
+        elif item.lower().endswith(('.jpg', '.jpeg', '.png', '.svg', '.webp', '.gif', '.ico', '.json')):
             shutil.copy2(s_item, d_item)
 
     # 3. Vytvořit style.css s hlavičkou šablony
@@ -322,6 +322,12 @@ def adapt_html_to_wp(html_content, is_subpage=False):
 
     # Nahrazení akce vyhledávacího formuláře na dynamickou home_url('/')
     html_content = re.sub(r'action=["\'][^"\']*index\.html["\']', 'action="<?php echo esc_url( home_url( \'/\' ) ); ?>"', html_content)
+
+    # Nahrazení cesty k zonerama_latest_photos.json v JavaScriptu na dynamickou URL šablony
+    html_content = html_content.replace(
+        "'zonerama_latest_photos.json'",
+        "\"<?php echo get_template_directory_uri(); ?>/zonerama_latest_photos.json\""
+    )
 
     return html_content
 

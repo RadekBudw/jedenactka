@@ -12,6 +12,7 @@ import sys
 from build_verze_a import generate_index_a, generate_vedeni_a
 from build_verze_b import generate_index_b, generate_vedeni_b
 from build_data import save_version_json, update_index_html_version, get_app_version, get_git_commit
+from fetch_zonerama_photos import copy_json_to_targets
 
 # Zajištění UTF-8 výstupu na Windows konzoli
 if sys.stdout.encoding != 'utf-8':
@@ -23,6 +24,9 @@ if sys.stdout.encoding != 'utf-8':
 def main():
     print(f"🚀 Zahajuji kompletní sestavení webu...")
     print(f"   Verze: {get_app_version()} (commit {get_git_commit()})")
+
+    # Zkopírovat databázi fotek ze Zoneramy do všech složek
+    copy_json_to_targets()
 
     print("\n[1/4] Generuji Variantu A...")
     generate_index_a()
