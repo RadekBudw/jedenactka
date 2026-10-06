@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json, re, datetime
 from build_data import leaders, h, TERMINOVNIK_BARKA, TERMINOVNIK_VLCATA, BLOG_POSTS, FAQ_ITEMS, get_version_meta_html, get_app_version, get_git_commit, save_version_json, update_index_html_version, get_search_modal_html, get_search_script_js
-from fetch_zonerama_photos import get_starter_pool
 
 BUILD_TIMESTAMP = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
@@ -145,9 +144,6 @@ def get_navbar(is_subpage=False):
 
 # Build verzeA/index.html
 def generate_index_a():
-    starter_photos = get_starter_pool(limit_per_album=4)
-    starter_photos_json = json.dumps(starter_photos, ensure_ascii=False)
-
     barka_cards = "".join([f'''
       <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200/80 hover:border-brand-sky hover:shadow-md transition-all flex flex-col justify-between">
         <div>
@@ -635,7 +631,7 @@ def generate_index_a():
             <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-yellow-400/30 text-[11px] font-bold text-yellow-300 shadow-md">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span id="heroSourceBadge">Momentky z oddílu</span>
+                <span>Momentky z oddílu</span>
               </span>
               <button onclick="event.stopPropagation(); handleHeroClick()" type="button" class="px-3 py-1.5 rounded-xl bg-slate-950/85 hover:bg-slate-900 text-yellow-400 border border-yellow-400/50 hover:border-yellow-400 text-xs font-bold transition-all shadow-md cursor-pointer flex items-center gap-1.5 active:scale-95" title="Náhodně změnit fotografii v záhlaví">
                 <i class="fa-solid fa-shuffle"></i>
@@ -1763,10 +1759,9 @@ def generate_index_a():
       }}, 4000);
     }}
 
-    // =========================================================================
-    // DYNAMICKÉ NAČÍTÁNÍ FOTOGRAFIÍ ZE ZONERAMA (POSLEDNÍ 2 ROKY) S LOKÁLNÍM FALLBACKEM
-    // =========================================================================
-    const heroPhotosLocal = [
+    // Hero záhlaví - náhodné a automatické střídání fotografií
+    // Fotografie čerpané z oddílové fotogalerie Zonerama za poslední rok
+    const heroPhotos = [
       {{ src: "zonerama_2.jpg", tag: "Společná voda 2026", sub: "Sjíždění šlajsny na kánoi", title: "Vodácká dobrodružství & peřeje na řece" }},
       {{ src: "zonerama_1.jpg", tag: "Slalomový kanál 2026", sub: "České Vrbné • divoká voda", title: "Zázemí na vodě & trénink pádlování a stability" }},
       {{ src: "zonerama_3.jpg", tag: "3 Jezy Praha 2025", sub: "Závod Napříč Prahou", title: "Reprezentace posádky 11. oddílu na prestižním závodě" }},
@@ -1776,102 +1771,29 @@ def generate_index_a():
       {{ src: "zonerama_6.jpg", tag: "Kajaky v peřejích", sub: "České Vrbné", title: "Slalomový trénink mezi brankami na divoké vodě" }}
     ];
 
-    // Startovní pool fotografií ze Zoneramy za poslední 2 roky (2024–2026)
-    const initialZoneramaPhotos = {starter_photos_json};
-    let zoneramaPhotosPool = [...initialZoneramaPhotos];
-    const zoneramaJsonUrl = 'zonerama_latest_photos.json';
+    let currentHeroIdx = Math.floor(Math.random() * heroPhotos.length);
 
-    // Asynchronní načtení všech 269 fotografií ze Zoneramy na pozadí
-    fetch(zoneramaJsonUrl)
-      .then(response => {{
-        if (!response.ok) throw new Error('HTTP ' + response.status);
-        return response.json();
-      }})
-      .then(data => {{
-        if (Array.isArray(data) && data.length > 0) {{
-          zoneramaPhotosPool = data;
-        }}
-      }})
-      .catch(() => {{
-        // V případě selhání fetch pokračujeme se startovním poolem a lokálním fallbackem
-      }});
+    function renderHeroDots() {{
+      const container = document.getElementById('heroDots');
+      if (!container) return;
+      container.innerHTML = heroPhotos.map((_, i) => `
+        <button onclick="event.stopPropagation(); setHeroPhoto(${{i}})" class="h-1.5 rounded-full transition-all cursor-pointer ${{i === currentHeroIdx ? 'w-6 bg-yellow-400' : 'w-2 bg-white/30 hover:bg-white/60'}}" title="Fotka ${{i+1}}"></button>
+      `).join('');
+    }}
 
-    let onlineFailures = 0;
-    const MAX_ONLINE_FAILS = 2;
-    let localHeroIdx = Math.floor(Math.random() * heroPhotosLocal.length);
-
-    function showLocalHeroPhoto() {{
-      let newIdx = Math.floor(Math.random() * heroPhotosLocal.length);
-      while (newIdx === localHeroIdx && heroPhotosLocal.length > 1) {{
-        newIdx = Math.floor(Math.random() * heroPhotosLocal.length);
-      }}
-      localHeroIdx = newIdx;
-      const item = heroPhotosLocal[localHeroIdx];
-      updateHeroDOM(item.src, item.tag, item.sub, item.title, false);
+    function setHeroPhoto(idx) {{
+      currentHeroIdx = idx;
+      applyHeroPhoto();
+      startHeroTimer();
     }}
 
     function randomizeHeroPhoto() {{
-      // Pokud opakovaně selhalo načtení z internetu nebo je pool prázdný, cyklujeme lokální fotky
-      if (onlineFailures >= MAX_ONLINE_FAILS || zoneramaPhotosPool.length === 0) {{
-        showLocalHeroPhoto();
-        return;
+      let newIdx = Math.floor(Math.random() * heroPhotos.length);
+      while (newIdx === currentHeroIdx && heroPhotos.length > 1) {{
+        newIdx = Math.floor(Math.random() * heroPhotos.length);
       }}
-
-      // Vybrat náhodnou fotografii z online poolu Zonerama
-      const candidate = zoneramaPhotosPool[Math.floor(Math.random() * zoneramaPhotosPool.length)];
-
-      // Otestovat načtení fotky před zobrazením s časovým limitem (fallback při pomalém spojení či chybě)
-      const testImg = new Image();
-      let handled = false;
-
-      const timeoutTimer = setTimeout(() => {{
-        if (!handled) {{
-          handled = true;
-          onlineFailures++;
-          showLocalHeroPhoto();
-        }}
-      }}, 2500);
-
-      testImg.onload = () => {{
-        if (handled) return;
-        handled = true;
-        clearTimeout(timeoutTimer);
-        onlineFailures = 0; // reset čítače chyb při úspěchu
-        updateHeroDOM(candidate.src, candidate.tag, candidate.sub, candidate.title, true);
-      }};
-
-      testImg.onerror = () => {{
-        if (handled) return;
-        handled = true;
-        clearTimeout(timeoutTimer);
-        onlineFailures++;
-        showLocalHeroPhoto();
-      }};
-
-      testImg.src = candidate.src;
-    }}
-
-    function updateHeroDOM(src, tag, sub, title, isOnline) {{
-      const img = document.getElementById('heroImg');
-      const tagEl = document.getElementById('heroTag');
-      const subEl = document.getElementById('heroSub');
-      const titleEl = document.getElementById('heroTitle');
-      const badgeEl = document.getElementById('heroSourceBadge');
-
-      if (img) {{
-        img.style.opacity = '0.2';
-        setTimeout(() => {{
-          img.src = src;
-          img.alt = title || tag;
-          if (tagEl) tagEl.textContent = tag;
-          if (subEl) subEl.textContent = sub;
-          if (titleEl) titleEl.textContent = title;
-          if (badgeEl) {{
-            badgeEl.textContent = isOnline ? 'Zonerama (2024–2026)' : 'Momentky z oddílu';
-          }}
-          img.style.opacity = '1';
-        }}, 200);
-      }}
+      currentHeroIdx = newIdx;
+      applyHeroPhoto();
     }}
 
     function handleHeroClick() {{
@@ -1879,16 +1801,37 @@ def generate_index_a():
       startHeroTimer();
     }}
 
+    function applyHeroPhoto() {{
+      const img = document.getElementById('heroImg');
+      const tag = document.getElementById('heroTag');
+      const sub = document.getElementById('heroSub');
+      const title = document.getElementById('heroTitle');
+
+      if (img) {{
+        img.style.opacity = '0.2';
+        setTimeout(() => {{
+          const item = heroPhotos[currentHeroIdx];
+          img.src = item.src;
+          img.alt = item.title;
+          if (tag) tag.textContent = item.tag;
+          if (sub) sub.textContent = item.sub;
+          if (title) title.textContent = item.title;
+          img.style.opacity = '1';
+          renderHeroDots();
+        }}, 200);
+      }}
+    }}
+
     let heroTimer = null;
     function startHeroTimer() {{
       if (heroTimer) clearInterval(heroTimer);
       heroTimer = setInterval(() => {{
         randomizeHeroPhoto();
-      }}, 6000);
+      }}, 5000);
     }}
 
-    // Spustit náhodnou fotku ze Zoneramy (nebo lokální fallback) ihned po načtení a zapnout rotaci
-    randomizeHeroPhoto();
+    // Spustit náhodnou fotku hned při načtení a zapnout rotaci
+    applyHeroPhoto();
     startHeroTimer();
 
     // Spustit náhodné fotky loděnice a zapnout rotaci
