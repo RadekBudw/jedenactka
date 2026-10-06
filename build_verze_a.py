@@ -1714,6 +1714,13 @@ def generate_index_a():
       applyLodenicePhotos();
     }}
 
+    function getAssetUrl(url) {{
+      if (!url) return '';
+      if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/') || url.startsWith('data:')) return url;
+      const base = (typeof window.WP_THEME_URI !== 'undefined') ? window.WP_THEME_URI : '';
+      return base + url;
+    }}
+
     function applySingleLodenicePhoto(slot) {{
       if (slot === 1) {{
         const img1 = document.getElementById('lodeniceImg1');
@@ -1722,7 +1729,7 @@ def generate_index_a():
         if (img1) {{
           img1.style.opacity = '0.2';
           setTimeout(() => {{
-            img1.src = lodenicePhotos[currentLodeniceIdx1].src;
+            img1.src = getAssetUrl(lodenicePhotos[currentLodeniceIdx1].src);
             img1.alt = lodenicePhotos[currentLodeniceIdx1].title;
             if (title1) title1.textContent = lodenicePhotos[currentLodeniceIdx1].title;
             if (tag1) tag1.textContent = lodenicePhotos[currentLodeniceIdx1].tag;
@@ -1736,7 +1743,7 @@ def generate_index_a():
         if (img2) {{
           img2.style.opacity = '0.2';
           setTimeout(() => {{
-            img2.src = lodenicePhotos[currentLodeniceIdx2].src;
+            img2.src = getAssetUrl(lodenicePhotos[currentLodeniceIdx2].src);
             img2.alt = lodenicePhotos[currentLodeniceIdx2].title;
             if (title2) title2.textContent = lodenicePhotos[currentLodeniceIdx2].title;
             if (tag2) tag2.textContent = lodenicePhotos[currentLodeniceIdx2].tag;
@@ -1821,7 +1828,7 @@ def generate_index_a():
         img.style.opacity = '0.2';
         setTimeout(() => {{
           const item = heroPhotos[currentHeroIdx];
-          img.src = item.src;
+          img.src = getAssetUrl(item.src);
           img.alt = item.title;
           if (tag) tag.textContent = item.tag;
           if (sub) sub.textContent = item.sub;

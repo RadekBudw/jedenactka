@@ -193,7 +193,7 @@ def prepare_wp_theme(source_dir="verzeA"):
                     optimize_asset_image(ss, dd, max_dim=220, quality=75)
                 elif sub in referenced_content:
                     optimize_asset_image(ss, dd, max_dim=1100, quality=75)
-        elif item.lower().endswith(('.jpg', '.jpeg', '.png')):
+        elif item.lower().endswith(('.jpg', '.jpeg', '.png', '.webp')):
             # Zkopírovat pouze skutečně použité obrázky a optimalizovat je pro web
             if item in referenced_content:
                 optimize_asset_image(s_item, d_item, max_dim=1100, quality=75)
@@ -330,9 +330,10 @@ def adapt_html_to_wp(html_content, is_subpage=False):
     # Odstranění statického <title> tagu – WordPress si ho generuje sám přes add_theme_support('title-tag')
     html_content = re.sub(r'<title>.*?</title>', '<!-- Title managed dynamically by WordPress -->', html_content, flags=re.DOTALL)
 
-    # Vložení <?php wp_head(); ?> před </head>
+    # Vložení proměnné pro téma a <?php wp_head(); ?> před </head>
     if '</head>' in html_content:
-        html_content = html_content.replace('</head>', '<?php wp_head(); ?>\n</head>')
+        theme_head_script = '<script>window.WP_THEME_URI = "<?php echo get_template_directory_uri(); ?>/";</script>\n<?php wp_head(); ?>\n'
+        html_content = html_content.replace('</head>', f'{theme_head_script}</head>')
 
     # Vložení <?php wp_footer(); ?> před </body>
     if '</body>' in html_content:
@@ -347,15 +348,24 @@ def adapt_html_to_wp(html_content, is_subpage=False):
         html_content = re.sub(r'href=["\']index\.html["\']', 'href="<?php echo home_url(\'/\'); ?>"', html_content)
         html_content = re.sub(r'href=["\']#["\']', 'href="<?php echo home_url(\'/vedeni/\'); ?>"', html_content)
 
-    # Nahrazení obrázků (src="cesta.jpg|png|svg")
+    # Nahrazení HTML obrázků (src="cesta.jpg|png|svg|webp")
     def replace_src(match):
         attr = match.group(1)
         val = match.group(2)
-        if val.startswith(('http://', 'https://', '//', 'data:')):
+        if val.startswith(('http://', 'https://', '//', 'data:', '<?php')):
             return match.group(0)
         return f'{attr}="<?php echo get_template_directory_uri(); ?>/{val}"'
 
     html_content = re.sub(r'(src)=["\']([^"\']+)["\']', replace_src, html_content)
+
+    # Nahrazení obrázků v JavaScript objektech a polích (např. { src: "foto.jpg" } nebo src: 'foto.jpg')
+    def replace_js_src(match):
+        val = match.group(1)
+        if val.startswith(('http://', 'https://', '//', 'data:', '<?php')):
+            return match.group(0)
+        return f'src: "<?php echo get_template_directory_uri(); ?>/{val}"'
+
+    html_content = re.sub(r'src:\s*["\']([^"\']+\.(?:jpg|jpeg|png|svg|webp))["\']', replace_js_src, html_content)
 
     # Nahrazení akce vyhledávacího formuláře na dynamickou home_url('/')
     html_content = re.sub(r'action=["\'][^"\']*index\.html["\']', 'action="<?php echo esc_url( home_url( \'/\' ) ); ?>"', html_content)
